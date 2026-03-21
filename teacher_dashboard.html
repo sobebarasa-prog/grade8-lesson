@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Teacher Dashboard – Grade 8 English</title>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1565c0;--blue-light:#e3f0ff;
+  --green:#2e7d32;--green-light:#e8f5e9;
+  --gold:#f9a825;--gold-light:#fffde7;
+  --red:#c62828;--red-light:#ffebee;
+  --purple:#6a1b9a;--purple-light:#f3e5ff;
+  --teal:#00897b;--teal-light:#e0f5f2;
+  --bg:#f0f4f8;--white:#fff;
+  --text:#1a2636;--muted:#607080;--border:#dde6f0;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:60px}
+.hero{background:linear-gradient(135deg,#0d47a1,#1565c0 50%,#00695c);color:#fff;padding:22px 18px 18px;text-align:center}
+.hero h1{font-size:20px;font-weight:800;margin-bottom:4px}
+.hero p{font-size:12px;opacity:.85}
+.hero-meta{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.meta-chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:3px 11px;font-size:11px;font-weight:700}
+.status-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--white);border-bottom:1px solid var(--border);font-size:12px;font-weight:600}
+.status-left{display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.dot.on{background:#2e7d32;animation:blink 2s infinite}
+.dot.off{background:#c62828}
+.dot.wait{background:#f9a825;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.ref-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:5px 12px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;cursor:pointer}
+.tabs{display:flex;background:var(--white);border-bottom:2px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:50}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:13px 16px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;border:none;background:none;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.panel{display:none;padding:14px 16px;animation:fadeIn .25s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sum-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.sum-card{background:var(--white);border-radius:12px;padding:12px 8px;text-align:center;box-shadow:0 2px 8px rgba(21,101,192,.09)}
+.sum-num{font-size:26px;font-weight:800;line-height:1}
+.sum-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:3px}
+.c-done .sum-num{color:var(--green)}.c-pend .sum-num{color:var(--gold)}.c-tot .sum-num{color:var(--blue)}
+.sec-hd{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;white-space:nowrap}
+.bdone{background:var(--green-light);color:var(--green)}
+.bpart{background:var(--gold-light);color:#7a5000}
+.bpend{background:var(--bg);color:var(--muted)}
+.bplay{background:var(--teal-light);color:var(--teal)}
+/* Step 2 */
+.s2card{background:var(--white);border-radius:14px;padding:16px;box-shadow:0 2px 10px rgba(21,101,192,.09);border-left:5px solid var(--border);margin-bottom:10px}
+.s2card.done{border-left-color:var(--teal)}
+.s2top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.s2ico{width:38px;height:38px;border-radius:10px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.s2title{font-size:14px;font-weight:700;flex:1}
+.s2sub{font-size:11px;color:var(--muted)}
+/* Step 3 */
+.s3card{background:var(--white);border-radius:14px;padding:12px 14px;box-shadow:0 2px 10px rgba(21,101,192,.09);border-left:5px solid var(--border);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.s3card.done{border-left-color:var(--purple)}
+.s3ico{font-size:20px;flex-shrink:0}
+.s3body{flex:1}
+.s3title{font-size:13px;font-weight:700}
+.s3time{font-size:11px;color:var(--muted);margin-top:2px}
+/* Step 4 */
+.s4block{background:var(--white);border-radius:14px;padding:14px;box-shadow:0 2px 10px rgba(21,101,192,.09);border-left:5px solid var(--border);margin-bottom:10px}
+.s4block.done{border-left-color:var(--green)}
+.s4block.part{border-left-color:var(--gold)}
+.s4top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.s4ico{width:36px;height:36px;border-radius:10px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.s4title{font-size:13px;font-weight:700;flex:1}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rslot{border-radius:10px;padding:10px 12px;border:2px solid var(--border)}
+.rslot.done{background:var(--green-light);border-color:#81c784}
+.rslot.pend{background:var(--bg)}
+.rs-top{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.rs-name{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;flex:1}
+.rslot.done .rs-name{color:var(--green)}.rslot.pend .rs-name{color:var(--muted)}
+.rs-stat{font-size:12px;font-weight:600}
+.rslot.done .rs-stat{color:var(--green)}.rslot.pend .rs-stat{color:var(--muted)}
+.rs-meta{font-size:10px;color:var(--muted);margin-top:2px}
+/* Assessment */
+.objcard{background:var(--white);border-radius:12px;padding:12px 14px;box-shadow:0 2px 8px rgba(21,101,192,.09);border-left:5px solid var(--border);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px}
+.objcard.done{border-left-color:var(--green);background:var(--green-light)}
+.objnum{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted)}
+.objcard.done .objnum{background:var(--green);color:#fff}
+.objtext{font-size:13px;line-height:1.5;font-weight:500}
+.objmeta{font-size:11px;color:var(--muted);margin-top:3px}
+.objcard.done .objmeta{color:var(--green)}
+/* Shared */
+.empty{text-align:center;padding:30px 20px;color:var(--muted)}
+.empty div{font-size:34px;margin-bottom:10px}
+.empty p{font-size:13px;line-height:1.7}
+.last-upd{text-align:center;font-size:11px;color:var(--muted);margin:8px 0}
+.clr-btn{width:100%;padding:11px;background:var(--white);color:var(--red);border:2px solid var(--red);border-radius:50px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>📊 Teacher Dashboard</h1>
+  <p>Live lesson activity monitor — Grade 8 English</p>
+  <div class="hero-meta">
+    <div class="meta-chip">🏫 Nambuku Junior School</div>
+    <div class="meta-chip">📚 Grade 8</div>
+    <div class="meta-chip">🔴 Live</div>
+  </div>
+</div>
+
+<div class="status-bar">
+  <div class="status-left">
+    <div class="dot wait" id="dot"></div>
+    <span id="statusTxt">Connecting...</span>
+  </div>
+  <button class="ref-btn" onclick="loadAll()">🔄 Refresh</button>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showPanel('p2',this)">🔊 Step 2</button>
+  <button class="tab" onclick="showPanel('p3',this)">🃏 Step 3</button>
+  <button class="tab" onclick="showPanel('p4',this)">🎭 Step 4</button>
+  <button class="tab" onclick="showPanel('pa',this)">✅ Assess</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="panel active" id="p2">
+  <div style="height:14px"></div>
+  <div class="sec-hd">🔊 Step 2 — Audio Conversation Played</div>
+  <div id="s2c"><div class="empty"><div>📭</div><p>Waiting for learners to play<br>the telephone conversation...</p></div></div>
+  <div class="last-upd" id="lu2"></div>
+  <button class="clr-btn" onclick="clr('step2','lu2')">🗑 Clear Step 2 Records</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="panel" id="p3">
+  <div style="height:14px"></div>
+  <div class="sum-strip">
+    <div class="sum-card c-done"><div class="sum-num" id="s3dn">0</div><div class="sum-lbl">Completed</div></div>
+    <div class="sum-card c-pend"><div class="sum-num" id="s3pn">7</div><div class="sum-lbl">Pending</div></div>
+    <div class="sum-card c-tot"><div class="sum-num">7</div><div class="sum-lbl">Total Sets</div></div>
+  </div>
+  <div class="sec-hd">🃏 Step 3 — Jumbled Conversations Arranged</div>
+  <div id="s3c"><div class="empty"><div>📭</div><p>Waiting for pairs to complete<br>the drag and drop activity...</p></div></div>
+  <div class="last-upd" id="lu3"></div>
+  <button class="clr-btn" onclick="clr('step3','lu3')">🗑 Clear Step 3 Records</button>
+</div>
+
+<!-- STEP 4 -->
+<div class="panel" id="p4">
+  <div style="height:14px"></div>
+  <div class="sum-strip">
+    <div class="sum-card c-done"><div class="sum-num" id="s4dn">0</div><div class="sum-lbl">Recorded</div></div>
+    <div class="sum-card c-pend"><div class="sum-num" id="s4pn">14</div><div class="sum-lbl">Pending</div></div>
+    <div class="sum-card c-tot"><div class="sum-num">14</div><div class="sum-lbl">Total Slots</div></div>
+  </div>
+  <div class="sec-hd">🎭 Step 4 — Role-Play Recordings</div>
+  <div id="s4c"></div>
+  <div class="last-upd" id="lu4"></div>
+  <button class="clr-btn" onclick="clr('recordings','lu4')">🗑 Clear Step 4 Records</button>
+</div>
+
+<!-- ASSESSMENT -->
+<div class="panel" id="pa">
+  <div style="height:14px"></div>
+  <div class="sum-strip">
+    <div class="sum-card c-done"><div class="sum-num" id="sadn">0</div><div class="sum-lbl">Achieved</div></div>
+    <div class="sum-card c-pend"><div class="sum-num" id="sapn">6</div><div class="sum-lbl">Pending</div></div>
+    <div class="sum-card c-tot"><div class="sum-num">6</div><div class="sum-lbl">Objectives</div></div>
+  </div>
+  <div class="sec-hd">✅ Assessment — Self-Assessment Checklist</div>
+  <div id="sac"><div class="empty"><div>📭</div><p>Waiting for learners to tick<br>their assessment objectives...</p></div></div>
+  <div class="last-upd" id="lua"></div>
+  <button class="clr-btn" onclick="clr('assessment','lua')">🗑 Clear Assessment Records</button>
+</div>
+
+<script>
+var FB = {
+  apiKey:"AIzaSyDXzydewPT2ng5ve6II9PAUAHP4pew2GXI",
+  authDomain:"g8lessonstracker.firebaseapp.com",
+  databaseURL:"https://g8lessonstracker-default-rtdb.firebaseio.com",
+  projectId:"g8lessonstracker",
+  storageBucket:"g8lessonstracker.firebasestorage.app",
+  messagingSenderId:"718966061631",
+  appId:"1:718966061631:web:93ae137616991183e0568a"
+};
+if (!firebase.apps.length) firebase.initializeApp(FB);
+var db = firebase.database();
+
+var SC = [
+  {n:'1',ic:'📚',t:'Scenario 1 – Library Enquiry',ca:'Student',re:'Librarian'},
+  {n:'2',ic:'🎤',t:'Scenario 2 – Human Rights Event',ca:'You (Caller)',re:'Friend / Parent'},
+  {n:'3',ic:'🏫',t:'Scenario 3 – Reporting Bullying',ca:'Learner',re:'Deputy Principal'},
+  {n:'4',ic:'🏥',t:'Scenario 4 – Health Centre Enquiry',ca:'Parent / Guardian',re:'Health Receptionist'},
+  {n:'5',ic:'💧',t:'Scenario 5 – Clean Water Report',ca:'Community Member',re:'Newspaper Reporter'},
+  {n:'6',ic:'🏛',t:'Scenario 6 – School Transfer',ca:'Parent',re:'Education Clerk'},
+  {n:'7',ic:'📻',t:'Scenario 7 – Radio Station Request',ca:'Youth Representative',re:'Radio Producer'}
+];
+
+var S3SETS = [
+  {k:'Set_A',ic:'📚',t:'Set A – Student calls the Library'},
+  {k:'Set_B',ic:'🎤',t:'Set B – Invitation to Human Rights Event'},
+  {k:'Set_C',ic:'🏫',t:'Set C – Reporting Bullying'},
+  {k:'Set_D',ic:'🏥',t:'Set D – Health Centre Enquiry'},
+  {k:'Set_E',ic:'💧',t:'Set E – Reporting Lack of Clean Water'},
+  {k:'Set_F',ic:'🏛',t:'Set F – School Transfer Enquiry'},
+  {k:'Set_G',ic:'📻',t:'Set G – Radio Station Request'}
+];
+
+var AO = [
+  'I can identify polite words and phrases used in a telephone conversation.',
+  'I can explain the difference between a telephone and a face-to-face conversation.',
+  'I can use polite expressions when starting and ending a telephone call.',
+  'I was able to match the telephone conversation flashcards correctly.',
+  'I participated in the role-play activity and used polite language.',
+  'I acknowledge that telephone etiquette is important in real-life communication.'
+];
+
+var data = {step2:{},step3:{},recordings:{},assessment:{}};
+
+db.ref('.info/connected').on('value',function(s){
+  var on=s.val();
+  document.getElementById('dot').className='dot '+(on?'on':'off');
+  document.getElementById('statusTxt').textContent=on?'🟢 Live — updates automatically':'🔴 Disconnected — check internet';
+});
+
+db.ref('step2').on('value',function(s){data.step2=s.val()||{};rS2();ts('lu2');});
+db.ref('step3').on('value',function(s){data.step3=s.val()||{};rS3();ts('lu3');});
+db.ref('recordings').on('value',function(s){data.recordings=s.val()||{};rS4();ts('lu4');});
+db.ref('assessment').on('value',function(s){data.assessment=s.val()||{};rSA();ts('lua');});
+
+function loadAll(){ document.getElementById('statusTxt').textContent='⏳ Refreshing...'; setTimeout(function(){document.getElementById('statusTxt').textContent='🟢 Live — updates automatically';},1200); }
+
+function ts(id){
+  var n=new Date(),p=function(x){return x<10?'0'+x:x;};
+  document.getElementById(id).textContent='Last updated: '+p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
+}
+
+// STEP 2
+function rS2(){
+  var el=document.getElementById('s2c');
+  var pl=data.step2&&data.step2.conversation_played;
+  if(!pl){el.innerHTML='<div class="empty"><div>📭</div><p>Waiting for learners to play<br>the telephone conversation in Step 2...</p></div>';return;}
+  el.innerHTML='<div class="s2card done">'+
+    '<div class="s2top"><div class="s2ico">🔊</div>'+
+    '<div><div class="s2title">Telephone Conversation Played</div>'+
+    '<div class="s2sub">James &amp; Mary – Polite Language: Telephone Etiquette</div></div>'+
+    '<span class="badge bplay" style="margin-left:auto">▶ Played</span></div>'+
+    '<div style="font-size:12px;color:var(--muted)">🕐 '+pl.time+' &nbsp;📅 '+pl.date+'</div>'+
+  '</div>'+
+  '<div style="background:var(--teal-light);border-left:4px solid var(--teal);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.7;color:#00463d">'+
+    '✅ The class has listened to the telephone conversation. They are ready to identify polite expressions.'+
+  '</div>';
+}
+
+// STEP 3
+function rS3(){
+  var el=document.getElementById('s3c');
+  var sets=data.step3||{};
+  var keys=Object.keys(sets);
+  var done=keys.length;
+  document.getElementById('s3dn').textContent=done;
+  document.getElementById('s3pn').textContent=Math.max(0,7-done);
+  el.innerHTML='';
+  S3SETS.forEach(function(s){
+    var found=keys.find(function(k){return k.indexOf(s.k)===0||k.indexOf(s.t.substring(0,10))===0;});
+    var rec=found?sets[found]:null;
+    var card=document.createElement('div');
+    card.className='s3card'+(rec?' done':'');
+    card.innerHTML='<span class="s3ico">'+s.ic+'</span>'+
+      '<div class="s3body"><div class="s3title">'+s.t+'</div>'+
+      '<div class="s3time">'+(rec?'🕐 '+rec.time+' &nbsp;📅 '+rec.date:'Not yet completed')+'</div></div>'+
+      '<span class="badge '+(rec?'bdone':'bpend')+'">'+(rec?'✅ Done':'⬜ Pending')+'</span>';
+    el.appendChild(card);
+  });
+}
+
+// STEP 4
+function rS4(){
+  var el=document.getElementById('s4c');
+  var recs=data.recordings||{};
+  var done=Object.keys(recs).length;
+  document.getElementById('s4dn').textContent=done;
+  document.getElementById('s4pn').textContent=Math.max(0,14-done);
+  el.innerHTML='';
+  SC.forEach(function(sc){
+    var ck='scenario'+sc.n+'_Caller';
+    var rk='scenario'+sc.n+'_Receiver';
+    var cr=recs[ck],rr=recs[rk];
+    var both=cr&&rr,one=cr||rr;
+    var state=both?'done':one?'part':'';
+    var badge=both?'<span class="badge bdone">✅ Complete</span>':one?'<span class="badge bpart">⏳ In Progress</span>':'<span class="badge bpend">⬜ Not Started</span>';
+    var mkSlot=function(rec,ico,name){
+      return rec?
+        '<div class="rslot done"><div class="rs-top"><span>'+ico+'</span><span class="rs-name">'+name+'</span><span style="font-size:15px">✅</span></div><div class="rs-stat">Recorded</div><div class="rs-meta">⏱ '+rec.duration+' &nbsp;🕐 '+rec.time+'</div></div>':
+        '<div class="rslot pend"><div class="rs-top"><span>'+ico+'</span><span class="rs-name">'+name+'</span></div><div class="rs-stat">Not recorded</div><div class="rs-meta">Waiting...</div></div>';
+    };
+    var b=document.createElement('div');
+    b.className='s4block '+state;
+    b.innerHTML='<div class="s4top"><div class="s4ico">'+sc.ic+'</div><div class="s4title">'+sc.t+'</div>'+badge+'</div>'+
+      '<div class="roles">'+mkSlot(cr,'📞',sc.ca)+mkSlot(rr,'📱',sc.re)+'</div>';
+    el.appendChild(b);
+  });
+}
+
+// ASSESSMENT
+function rSA(){
+  var el=document.getElementById('sac');
+  var ass=data.assessment||{};
+  var done=Object.keys(ass).length;
+  document.getElementById('sadn').textContent=done;
+  document.getElementById('sapn').textContent=Math.max(0,6-done);
+  el.innerHTML='';
+  AO.forEach(function(txt,i){
+    var rec=ass['obj_'+(i+1)];
+    var card=document.createElement('div');
+    card.className='objcard'+(rec?' done':'');
+    card.innerHTML='<div class="objnum">'+(rec?'✓':(i+1))+'</div>'+
+      '<div><div class="objtext">'+txt+'</div>'+
+      '<div class="objmeta">'+(rec?'✅ Achieved at '+rec.time+' — '+rec.progress+' objectives done':'Not yet ticked')+'</div></div>';
+    el.appendChild(card);
+  });
+}
+
+// TABS
+function showPanel(id,btn){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// CLEAR
+function clr(path,stampId){
+  if(confirm('Clear all '+path+' records? This cannot be undone.')){
+    db.ref(path).remove().then(function(){alert('Cleared successfully.');ts(stampId);});
+  }
+}
+</script>
+</body>
+</html>

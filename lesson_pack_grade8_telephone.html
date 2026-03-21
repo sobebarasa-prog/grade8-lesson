@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Grade 8 English – Telephone Etiquette</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#1565c0; --blue-light:#e3f0ff;
+  --teal:#00897b; --teal-light:#e0f5f2;
+  --gold:#f9a825; --gold-light:#fffde7;
+  --green:#2e7d32; --green-light:#e8f5e9;
+  --purple:#6a1b9a; --purple-light:#f3e5ff;
+  --red:#c62828; --red-light:#ffebee;
+  --bg:#f4f7fb; --white:#fff;
+  --text:#1a2636; --muted:#607080; --border:#dde6f0;
+  --shadow:0 2px 16px rgba(21,101,192,.10);
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d47a1,#1976d2 60%,#0097a7);color:#fff;padding:32px 20px 28px;text-align:center;position:relative;overflow:hidden}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(20px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:6px}
+.hero h1 span{color:#80d8ff}
+.hero p{font-size:13px;opacity:.85;max-width:520px;margin:0 auto;line-height:1.6}
+.hero-meta{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.meta-chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600}
+
+/* NAV TABS */
+.nav-tabs{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--white);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:100;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto;padding:14px 18px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;border:none;background:none;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* SECTIONS */
+.section{display:none;padding:20px 16px;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* CARDS */
+.card{background:var(--white);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-title .icon{width:28px;height:28px;background:var(--blue-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px}
+
+/* OBJECTIVES */
+.obj-list{list-style:none}
+.obj-list li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;line-height:1.6}
+.obj-list li:last-child{border-bottom:none}
+.obj-letter{flex-shrink:0;width:26px;height:26px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+/* STEP HEADERS */
+.step-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.step-num{width:38px;height:38px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
+.s1{background:#1565c0}.s2{background:#00897b}.s3{background:#f57c00}.s4{background:#6a1b9a}
+.step-label{font-size:15px;font-weight:700}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+
+/* PICTURES */
+.pic-wrap{border-radius:14px;overflow:hidden;border:2px solid var(--border);margin-bottom:10px}
+.pic-wrap svg{display:block;width:100%;height:auto}
+.pic-caption{font-size:12px;color:var(--muted);text-align:center;padding:8px 12px;background:var(--bg);border-top:1px solid var(--border);font-style:italic}
+
+/* DISCUSSION */
+.q-box{background:var(--gold-light);border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px;margin-top:14px}
+.q-box p{font-size:13px;font-weight:600;margin-bottom:6px;color:#5f4400}
+.q-box ul{list-style:none}
+.q-box ul li{font-size:13px;padding:4px 0;color:#5f4400}
+.q-box ul li::before{content:'❓ '}
+
+/* AUDIO PLAYER */
+.audio-player{background:linear-gradient(135deg,#0d47a1,#1976d2);border-radius:16px;padding:20px;color:#fff;margin-bottom:14px}
+.spk-tags{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.spk-tag{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700}
+.audio-controls{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.audio-btn{flex:1;min-width:120px;padding:12px;border-radius:50px;border:none;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.audio-btn.play{background:#00e5ff;color:#003040}
+.audio-btn.stop{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.audio-btn:disabled{opacity:.4;cursor:not-allowed}
+.speed-row{display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,.75);margin-bottom:14px}
+.speed-row select{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 10px;color:#fff;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;outline:none}
+.audio-progress{height:4px;background:rgba(255,255,255,.2);border-radius:4px;margin-bottom:12px;overflow:hidden}
+.audio-progress-fill{height:100%;width:0%;background:#00e5ff;border-radius:4px;transition:width .4s linear}
+.audio-status{font-size:12px;opacity:.8;min-height:18px}
+
+/* CONV BUBBLES */
+.conv-line{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;opacity:.4;transition:opacity .3s,transform .3s}
+.conv-line.right{flex-direction:row-reverse}
+.conv-line.active{opacity:1;transform:scale(1.01)}
+.conv-line.done{opacity:.7}
+.conv-avatar{width:36px;height:36px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;background:rgba(255,255,255,.15);border:2px solid transparent;transition:border-color .3s}
+.conv-line.active .conv-avatar{border-color:#00e5ff}
+.conv-body{flex:1}
+.conv-name{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;opacity:.75}
+.conv-line.right .conv-name{text-align:right}
+.conv-bubble{display:inline-block;max-width:88%;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.6;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2)}
+.conv-line.right .conv-bubble{float:right;border-bottom-right-radius:4px}
+.conv-line:not(.right) .conv-bubble{border-bottom-left-radius:4px}
+.conv-line.active .conv-bubble{background:rgba(0,229,255,.15);border-color:rgba(0,229,255,.5)}
+.ph{color:#ffe082;font-weight:700;border-bottom:2px solid #ffe082}
+
+/* POLITE LEGEND */
+.polite-legend{background:var(--gold-light);border:1.5px solid var(--gold);border-radius:12px;padding:14px 16px;margin-top:14px}
+.polite-legend h4{font-size:12px;font-weight:800;color:#5f4400;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.polite-tags{display:flex;flex-wrap:wrap;gap:6px}
+.polite-tag{background:#fff;border:1.5px solid var(--gold);border-radius:20px;padding:3px 10px;font-size:12px;font-weight:600;color:#5f4400}
+
+/* DRAG-DROP STEP 3 */
+.dd-a11y-btn{background:var(--blue-light);border:1.5px solid var(--blue);border-radius:50px;padding:7px 14px;color:var(--blue);font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
+.dd-a11y-btn.dd-on{background:var(--blue);color:#fff}
+.dd-tabs-wrap{background:var(--white);border-radius:var(--radius);padding:12px 14px 0;margin-bottom:12px;box-shadow:var(--shadow)}
+.dd-tabs-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.dd-tabs-scroll{display:flex;gap:7px;overflow-x:auto;padding-bottom:11px;scrollbar-width:none}
+.dd-tabs-scroll::-webkit-scrollbar{display:none}
+.dd-tab{flex:0 0 auto;padding:7px 13px;border-radius:50px;border:2px solid var(--border);background:none;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .18s}
+.dd-tab.dd-active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.dd-tab.dd-done{background:var(--green-light);color:var(--green);border-color:var(--green)}
+.dd-ctx{background:var(--white);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px}
+.dd-ctx-icon{width:42px;height:42px;border-radius:12px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.dd-ctx-title{font-size:14px;font-weight:800;margin-bottom:2px}
+.dd-ctx-sub{font-size:12px;color:var(--muted)}
+.dd-instr{background:var(--gold-light);border:1.5px solid var(--gold);border-radius:14px;padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.7;color:#4a3000}
+.dd-instr strong{color:#b36800}
+.dd-scores{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.dd-score{background:var(--white);border-radius:50px;padding:6px 12px;font-size:12px;font-weight:700;box-shadow:var(--shadow)}
+.dd-score.dm{color:var(--blue)}.dd-score.dok{color:var(--green)}.dd-score.dbad{color:var(--red)}
+.dd-box{background:var(--white);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.dd-box-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:10px}
+.dd-jcard{display:flex;align-items:flex-start;gap:10px;border-radius:12px;padding:11px 13px;margin-bottom:8px;border:2px solid transparent;cursor:grab;user-select:none;touch-action:none;transition:opacity .15s,transform .15s}
+.dd-jcard:last-child{margin-bottom:0}
+.dd-jcard.dd-caller{background:#e8f1ff;border-color:#b3d0f7}
+.dd-jcard.dd-receiver{background:var(--purple-light);border-color:#ce93d8}
+.dd-jcard.dd-dragging{opacity:.25}
+.dd-jcard.dd-correct{background:var(--green-light);border-color:#81c784}
+.dd-jcard.dd-wrong{background:var(--red-light);border-color:#ef9a9a}
+.dd-handle{font-size:17px;color:#aac;flex-shrink:0;line-height:1.4}
+.dd-card-body{flex:1}
+.dd-card-who{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.dd-caller .dd-card-who{color:var(--blue)}.dd-receiver .dd-card-who{color:var(--purple)}
+.dd-card-text{font-size:13px;line-height:1.6}
+.dd-card-text.dd-large{font-size:16px}
+.dd-spk{flex-shrink:0;background:none;border:none;font-size:20px;cursor:pointer;padding:2px 4px;border-radius:8px;line-height:1;align-self:center}
+.dd-spk.dd-talking{animation:ddBlink .6s infinite alternate}
+@keyframes ddBlink{from{opacity:1}to{opacity:.3}}
+.dd-slot{min-height:52px;border-radius:10px;border:2px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:12px;margin-bottom:8px;transition:all .18s;padding:4px}
+.dd-slot:last-child{margin-bottom:0}
+.dd-slot.dd-over{border-color:var(--teal);background:var(--teal-light);color:var(--teal)}
+.dd-slot.dd-filled{border:none;padding:0;background:none}
+.dd-btn-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.dd-btn{flex:1;min-width:90px;padding:12px 8px;border-radius:50px;border:none;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px}
+.dd-btn-check{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(21,101,192,.3)}
+.dd-btn-reset{background:var(--white);color:var(--muted);border:2px solid var(--border)}
+.dd-btn-key{background:var(--gold-light);color:#7a5000;border:2px solid var(--gold)}
+.dd-fb{border-radius:14px;padding:12px 14px;margin-bottom:10px;font-size:13px;font-weight:600;line-height:1.6;display:none}
+.dd-fb.show{display:block}
+.dd-fb.ok{background:var(--green-light);color:var(--green);border:2px solid #81c784}
+.dd-fb.warn{background:var(--gold-light);color:#7a5000;border:2px solid var(--gold)}
+.dd-fb.bad{background:var(--red-light);color:var(--red);border:2px solid #ef9a9a}
+.dd-celeb{display:none;border-radius:var(--radius);overflow:hidden;margin-bottom:10px}
+.dd-celeb.show{display:block}
+.dd-celeb-top{background:linear-gradient(135deg,#1b5e20,#2e7d32);padding:20px 16px;text-align:center;color:#fff}
+.dd-celeb-body{background:var(--white);padding:14px}
+.dd-celeb-body h3{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:10px}
+.dd-cline{display:flex;gap:10px;padding:8px;border-radius:10px;margin-bottom:6px;transition:background .2s;align-items:flex-start}
+.dd-cline.dd-lit{background:var(--green-light)}
+.dd-cline-av{font-size:18px;flex-shrink:0;width:30px;text-align:center;border:2px solid transparent;border-radius:50%;padding:2px}
+.dd-cline.dd-lit .dd-cline-av{border-color:var(--green)}
+.dd-cline-txt{font-size:13px;line-height:1.6;flex:1}
+.dd-cline-who{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.dd-cc{color:var(--blue)}.dd-rc{color:var(--purple)}
+.dd-celeb-btns{display:flex;gap:8px;margin-top:12px}
+.dd-cbtn{flex:1;padding:12px;border-radius:50px;border:none;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;cursor:pointer}
+.dd-cbtn-play{background:var(--green);color:#fff}
+.dd-cbtn-stop{background:var(--white);color:var(--muted);border:2px solid var(--border)}
+.dd-key-box{display:none;background:var(--white);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.dd-key-box.show{display:block}
+.dd-key-box h3{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:10px}
+.dd-kline{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;line-height:1.6;align-items:flex-start}
+.dd-kline:last-child{border-bottom:none}
+.dd-knum{width:24px;height:24px;flex-shrink:0;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+.dd-kwho{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.dd-next-btn{display:none;width:100%;padding:14px;background:linear-gradient(135deg,var(--teal),#00695c);color:#fff;border:none;border-radius:50px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:10px}
+.dd-next-btn.show{display:block}
+.dd-all-done{display:none;background:linear-gradient(135deg,#0d47a1,#1976d2);border-radius:var(--radius);padding:24px 16px;text-align:center;color:#fff;margin-bottom:14px}
+.dd-all-done.show{display:block}
+.dd-restart-btn{margin-top:14px;padding:11px 26px;background:#fff;color:var(--blue);border:none;border-radius:50px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:800;cursor:pointer}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+/* ROLEPLAY */
+.scenario-card{background:linear-gradient(135deg,#4a148c,#6a1b9a);border-radius:16px;padding:20px;color:#fff;margin-bottom:14px}
+.scenario-card h3{font-size:15px;font-weight:800;margin-bottom:8px}
+.scenario-card p{font-size:13px;opacity:.9;line-height:1.7}
+.role-chips{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.role-chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700}
+.tips-list{list-style:none}
+.tips-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;padding:8px 0;border-bottom:1px solid var(--border);line-height:1.6}
+.tips-list li:last-child{border-bottom:none}
+.tip-icon{font-size:16px;flex-shrink:0}
+
+/* ASSESSMENT */
+.assess-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.assess-item:last-child{border-bottom:none}
+.assess-check{width:24px;height:24px;flex-shrink:0;border:2px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s}
+.assess-check.checked{background:var(--teal);border-color:var(--teal);color:#fff}
+.assess-text{font-size:13px;line-height:1.5}
+
+/* RECORDING PANEL */
+.rec-panel{background:#fff;border-radius:0 0 var(--radius) var(--radius);margin-top:-4px;margin-bottom:16px;padding:14px;box-shadow:var(--shadow)}
+.rec-pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
+.rec-pair-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);text-align:center}
+.rec-slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rec-slot{background:var(--bg);border-radius:12px;padding:12px;border:2px solid var(--border);transition:border-color .2s}
+.rec-slot.recording{border-color:var(--red);background:#fff5f5;animation:rec-pulse 1.2s infinite}
+.rec-slot.done{border-color:var(--green);background:var(--green-light)}
+@keyframes rec-pulse{0%,100%{box-shadow:0 0 0 0 rgba(198,40,40,.3)}50%{box-shadow:0 0 0 6px rgba(198,40,40,0)}}
+.rec-slot-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.rec-pair-tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.rec-timer{font-size:13px;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums}
+.rec-slot.done .rec-timer{color:var(--green)}
+.rec-btn-row{display:flex;gap:6px;margin-bottom:8px}
+.rec-btn{flex:1;padding:9px 6px;border-radius:50px;border:none;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.rec-start{background:var(--red);color:#fff}
+.rec-start:hover{background:#b71c1c}
+.rec-start:disabled{background:#ccc;cursor:not-allowed}
+.rec-stop{background:var(--bg);color:var(--muted);border:2px solid var(--border)}
+.rec-stop:disabled{opacity:.4;cursor:not-allowed}
+.rec-playback{margin-bottom:6px}
+.rec-playback audio{width:100%;height:36px;border-radius:8px}
+.rec-status{font-size:11px;color:var(--muted);text-align:center;font-weight:600}
+.rec-slot.recording .rec-status{color:var(--red)}
+.rec-slot.done .rec-status{color:var(--green)}
+.scenario-card{border-radius:var(--radius) var(--radius) 0 0;margin-bottom:0 !important;padding:20px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);display:flex;box-shadow:0 -4px 20px rgba(0,0,0,.08);z-index:200}
+.bnav-btn{flex:1;border:none;background:none;cursor:pointer;padding:10px 4px 14px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;transition:color .2s}
+.bnav-btn .bicon{font-size:20px}
+.bnav-btn.active{color:var(--blue)}
+</style>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">📚 Grade 8 · English · Term 1</div>
+  <h1>Polite Language:<br><span>Telephone Etiquette</span></h1>
+  <p>Theme 1.0: Human Rights · Listening and Speaking</p>
+  <div class="hero-meta">
+    <div class="meta-chip">🏫 Nambuku Junior School</div>
+    <div class="meta-chip">👥 Pairs</div>
+    <div class="meta-chip">⏱ 40 mins</div>
+  </div>
+</div>
+
+<div class="nav-tabs" id="navTabs">
+  <button class="tab-btn active" onclick="showTab('intro')">🎯 Intro</button>
+  <button class="tab-btn" onclick="showTab('step1')">📷 Step 1</button>
+  <button class="tab-btn" onclick="showTab('step2')">🔊 Step 2</button>
+  <button class="tab-btn" onclick="showTab('step3')">🃏 Step 3</button>
+  <button class="tab-btn" onclick="showTab('step4')">🎭 Step 4</button>
+  <button class="tab-btn" onclick="showTab('assess')">✅ Assess</button>
+</div>
+
+<!-- INTRO -->
+<div class="section active" id="sec-intro">
+  <div class="card">
+    <div class="card-title"><div class="icon">🎯</div> Learning Objectives</div>
+    <ul class="obj-list">
+      <li><div class="obj-letter">a</div>Identify polite words and phrases in telephone conversations.</li>
+      <li><div class="obj-letter">b</div>Conduct a telephone conversation using polite words and expressions.</li>
+      <li><div class="obj-letter">c</div>Acknowledge the significance of etiquette in telephone conversations.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-title"><div class="icon">💬</div> Introduction</div>
+    <p style="font-size:14px;line-height:1.7;color:var(--muted)">Learners are guided through a discussion of questions related to the theme, linking it to what they learnt in Social Studies about human rights.</p>
+    <div class="q-box">
+      <p>💬 Discussion Questions</p>
+      <ul>
+        <li>Why should one be polite when speaking over the telephone?</li>
+        <li>How do we ensure politeness in a telephone conversation?</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title"><div class="icon">📋</div> Lesson at a Glance</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><div style="width:32px;height:32px;border-radius:50%;background:#1565c0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">1</div><span>Observe pictures – telephone vs face-to-face</span></div>
+      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><div style="width:32px;height:32px;border-radius:50%;background:#00897b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">2</div><span>Listen to audio – identify polite words</span></div>
+      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><div style="width:32px;height:32px;border-radius:50%;background:#f57c00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">3</div><span>Match flashcards – order the conversation</span></div>
+      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><div style="width:32px;height:32px;border-radius:50%;background:#6a1b9a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">4</div><span>Role-play a telephone conversation in pairs</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 1 -->
+<div class="section" id="sec-step1">
+  <div class="card">
+    <div class="step-header">
+      <div class="step-num s1">1</div>
+      <div><div class="step-label">Observe the Pictures</div><div style="font-size:12px;color:var(--muted)">Share your experience &amp; compare</div></div>
+    </div>
+    <p class="step-desc">Learners observe the pictures below, share their personal experience of using a telephone, and discuss the differences between telephone and face-to-face conversations.</p>
+  </div>
+
+  <div class="card" style="padding:14px">
+    <div class="card-title"><div class="icon">📞</div> Picture 1 – Telephone Conversation</div>
+    <div class="pic-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+        <rect width="800" height="500" fill="#f0f7ff" rx="20"/>
+        <text x="400" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1a3c6e" font-family="Georgia">Picture 1: Telephone Conversation</text>
+        <line x1="100" y1="52" x2="700" y2="52" stroke="#1a3c6e" stroke-width="2"/>
+        <rect x="40" y="70" width="310" height="360" fill="#fff9e6" rx="12" stroke="#f0c040" stroke-width="2"/>
+        <text x="195" y="98" text-anchor="middle" font-size="13" fill="#888" font-family="Georgia" font-style="italic">Caller</text>
+        <rect x="162" y="340" width="22" height="60" rx="8" fill="#4a90d9"/>
+        <rect x="196" y="340" width="22" height="60" rx="8" fill="#4a90d9"/>
+        <ellipse cx="173" cy="402" rx="16" ry="8" fill="#222"/>
+        <ellipse cx="207" cy="402" rx="16" ry="8" fill="#222"/>
+        <rect x="148" y="230" width="84" height="115" rx="14" fill="#e8734a"/>
+        <path d="M148,250 Q110,260 105,230" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M232,250 Q260,265 255,295" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <rect x="178" y="205" width="24" height="28" rx="8" fill="#f5a875"/>
+        <ellipse cx="190" cy="185" rx="42" ry="46" fill="#f5a875"/>
+        <ellipse cx="190" cy="148" rx="42" ry="20" fill="#3b1f0a"/>
+        <rect x="148" y="148" width="84" height="22" rx="5" fill="#3b1f0a"/>
+        <ellipse cx="176" cy="182" rx="6" ry="7" fill="white"/><ellipse cx="204" cy="182" rx="6" ry="7" fill="white"/>
+        <circle cx="178" cy="183" r="3.5" fill="#222"/><circle cx="206" cy="183" r="3.5" fill="#222"/>
+        <path d="M178,200 Q190,212 202,200" stroke="#c0603a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <rect x="100" y="195" width="28" height="50" rx="7" fill="#222"/>
+        <rect x="104" y="200" width="20" height="35" rx="4" fill="#4fc3f7"/>
+        <path d="M75,205 Q65,218 75,231" stroke="#4fc3f7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M62,198 Q45,218 62,238" stroke="#4fc3f7" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <rect x="55" y="110" width="220" height="60" rx="12" fill="white" stroke="#4a90d9" stroke-width="2"/>
+        <polygon points="120,170 100,185 140,170" fill="white" stroke="#4a90d9" stroke-width="2"/>
+        <polygon points="121,171 101,184 139,171" fill="white"/>
+        <text x="165" y="135" text-anchor="middle" font-size="13" fill="#1a3c6e" font-weight="bold" font-family="Georgia">Hello! Good morning.</text>
+        <text x="165" y="155" text-anchor="middle" font-size="13" fill="#1a3c6e" font-family="Georgia">May I speak to James?</text>
+        <line x1="365" y1="200" x2="435" y2="200" stroke="#aaa" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <line x1="365" y1="260" x2="435" y2="260" stroke="#aaa" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="400" y="240" text-anchor="middle" font-size="26" font-family="Georgia">📶</text>
+        <text x="400" y="262" text-anchor="middle" font-size="11" fill="#888" font-family="Georgia">Signal</text>
+        <rect x="450" y="70" width="310" height="360" fill="#eaf7ea" rx="12" stroke="#5cb85c" stroke-width="2"/>
+        <text x="605" y="98" text-anchor="middle" font-size="13" fill="#888" font-family="Georgia" font-style="italic">Receiver</text>
+        <rect x="572" y="340" width="22" height="60" rx="8" fill="#5cb85c"/>
+        <rect x="606" y="340" width="22" height="60" rx="8" fill="#5cb85c"/>
+        <ellipse cx="583" cy="402" rx="16" ry="8" fill="#222"/>
+        <ellipse cx="617" cy="402" rx="16" ry="8" fill="#222"/>
+        <rect x="558" y="230" width="84" height="115" rx="14" fill="#5cb85c"/>
+        <path d="M642,250 Q680,260 685,230" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M558,250 Q530,265 535,295" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <rect x="588" y="205" width="24" height="28" rx="8" fill="#f5a875"/>
+        <ellipse cx="600" cy="185" rx="42" ry="46" fill="#f5a875"/>
+        <ellipse cx="600" cy="148" rx="42" ry="20" fill="#3b1f0a"/>
+        <rect x="558" y="148" width="84" height="22" rx="5" fill="#3b1f0a"/>
+        <ellipse cx="586" cy="182" rx="7" ry="8" fill="white"/><ellipse cx="614" cy="182" rx="7" ry="8" fill="white"/>
+        <circle cx="588" cy="183" r="4" fill="#222"/><circle cx="616" cy="183" r="4" fill="#222"/>
+        <path d="M588,200 Q600,210 612,200" stroke="#c0603a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <rect x="672" y="195" width="28" height="50" rx="7" fill="#222"/>
+        <rect x="676" y="200" width="20" height="35" rx="4" fill="#4fc3f7"/>
+        <rect x="520" y="110" width="220" height="60" rx="12" fill="white" stroke="#5cb85c" stroke-width="2"/>
+        <polygon points="655,170 635,185 675,170" fill="white" stroke="#5cb85c" stroke-width="2"/>
+        <polygon points="656,171 636,184 674,171" fill="white"/>
+        <text x="630" y="135" text-anchor="middle" font-size="13" fill="#1a3c6e" font-weight="bold" font-family="Georgia">Good morning!</text>
+        <text x="630" y="155" text-anchor="middle" font-size="13" fill="#1a3c6e" font-family="Georgia">Speaking, please.</text>
+        <rect x="40" y="445" width="720" height="42" rx="10" fill="#1a3c6e"/>
+        <text x="400" y="471" text-anchor="middle" font-size="13" fill="white" font-family="Georgia">Telephone: speakers cannot see each other — polite words matter even more!</text>
+      </svg>
+      <div class="pic-caption">Caller (left) and Receiver (right) using polite language over the phone.</div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:14px">
+    <div class="card-title"><div class="icon">🧑‍🤝‍🧑</div> Picture 2 – Face-to-Face Conversation</div>
+    <div class="pic-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+        <rect width="800" height="500" fill="#f5fff5" rx="20"/>
+        <rect x="0" y="0" width="800" height="300" fill="#d0eeff" rx="20"/>
+        <rect x="0" y="300" width="800" height="200" fill="#c8e6a0"/>
+        <circle cx="720" cy="70" r="45" fill="#FFD700"/>
+        <rect x="80" y="260" width="18" height="80" rx="5" fill="#8B5E3C"/>
+        <ellipse cx="89" cy="240" rx="45" ry="55" fill="#2e7d32"/>
+        <ellipse cx="70" cy="255" rx="30" ry="38" fill="#388e3c"/>
+        <ellipse cx="108" cy="255" rx="30" ry="38" fill="#388e3c"/>
+        <rect x="700" y="260" width="18" height="80" rx="5" fill="#8B5E3C"/>
+        <ellipse cx="709" cy="240" rx="45" ry="55" fill="#2e7d32"/>
+        <rect x="200" y="10" width="400" height="42" rx="10" fill="#1a3c6e" opacity="0.85"/>
+        <text x="400" y="37" text-anchor="middle" font-size="19" font-weight="bold" fill="white" font-family="Georgia">Picture 2: Face-to-Face Conversation</text>
+        <rect x="268" y="360" width="22" height="70" rx="8" fill="#e91e8c"/>
+        <rect x="302" y="360" width="22" height="70" rx="8" fill="#e91e8c"/>
+        <ellipse cx="279" cy="432" rx="18" ry="9" fill="#333"/>
+        <ellipse cx="313" cy="432" rx="18" ry="9" fill="#333"/>
+        <rect x="258" y="240" width="84" height="120" rx="14" fill="#e91e8c"/>
+        <path d="M342,265 Q390,255 410,265" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M258,265 Q230,280 228,310" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <rect x="288" y="212" width="24" height="30" rx="8" fill="#f5a875"/>
+        <ellipse cx="300" cy="192" rx="44" ry="48" fill="#f5a875"/>
+        <ellipse cx="300" cy="152" rx="44" ry="22" fill="#3b1f0a"/>
+        <rect x="256" y="152" width="88" height="30" rx="5" fill="#3b1f0a"/>
+        <ellipse cx="256" cy="185" rx="14" ry="30" fill="#3b1f0a"/>
+        <ellipse cx="344" cy="185" rx="14" ry="30" fill="#3b1f0a"/>
+        <ellipse cx="300" cy="148" rx="22" ry="10" fill="#ff4081"/>
+        <path d="M283,188 Q289,180 295,188" stroke="#222" stroke-width="3" fill="none"/>
+        <path d="M305,188 Q311,180 317,188" stroke="#222" stroke-width="3" fill="none"/>
+        <path d="M283,207 Q300,222 317,207" stroke="#c0603a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <rect x="468" y="360" width="22" height="70" rx="8" fill="#1565c0"/>
+        <rect x="502" y="360" width="22" height="70" rx="8" fill="#1565c0"/>
+        <ellipse cx="479" cy="432" rx="18" ry="9" fill="#222"/>
+        <ellipse cx="513" cy="432" rx="18" ry="9" fill="#222"/>
+        <rect x="458" y="240" width="84" height="120" rx="14" fill="#1565c0"/>
+        <path d="M458,265 Q410,255 390,265" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M542,265 Q570,280 572,310" stroke="#f5a875" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <rect x="488" y="212" width="24" height="30" rx="8" fill="#f5a875"/>
+        <ellipse cx="500" cy="192" rx="44" ry="48" fill="#f5a875"/>
+        <ellipse cx="500" cy="152" rx="44" ry="20" fill="#3b1f0a"/>
+        <rect x="456" y="152" width="88" height="22" rx="5" fill="#3b1f0a"/>
+        <path d="M483,188 Q489,180 495,188" stroke="#222" stroke-width="3" fill="none"/>
+        <path d="M505,188 Q511,180 517,188" stroke="#222" stroke-width="3" fill="none"/>
+        <path d="M483,207 Q500,222 517,207" stroke="#c0603a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <rect x="160" y="115" width="185" height="65" rx="14" fill="white" stroke="#e91e8c" stroke-width="2.5"/>
+        <polygon points="300,180 280,200 320,180" fill="white" stroke="#e91e8c" stroke-width="2.5"/>
+        <polygon points="301,181 281,199 319,181" fill="white"/>
+        <text x="253" y="140" text-anchor="middle" font-size="13" fill="#880e4f" font-weight="bold" font-family="Georgia">Good morning!</text>
+        <text x="253" y="158" text-anchor="middle" font-size="13" fill="#880e4f" font-family="Georgia">How are you today?</text>
+        <rect x="455" y="115" width="185" height="65" rx="14" fill="white" stroke="#1565c0" stroke-width="2.5"/>
+        <polygon points="500,180 480,200 520,180" fill="white" stroke="#1565c0" stroke-width="2.5"/>
+        <polygon points="501,181 481,199 519,181" fill="white"/>
+        <text x="547" y="140" text-anchor="middle" font-size="13" fill="#0d47a1" font-weight="bold" font-family="Georgia">I am fine, thank you!</text>
+        <text x="547" y="158" text-anchor="middle" font-size="13" fill="#0d47a1" font-family="Georgia">And you?</text>
+        <line x1="344" y1="192" x2="456" y2="192" stroke="#FFD700" stroke-width="2" stroke-dasharray="6,4"/>
+        <polygon points="456,192 446,187 446,197" fill="#FFD700"/>
+        <polygon points="344,192 354,187 354,197" fill="#FFD700"/>
+        <text x="400" y="185" text-anchor="middle" font-size="10" fill="#e65100" font-family="Georgia">eye contact</text>
+        <rect x="40" y="455" width="720" height="38" rx="10" fill="#1a3c6e"/>
+        <text x="400" y="479" text-anchor="middle" font-size="13" fill="white" font-family="Georgia">Face-to-face: speakers use eye contact, facial expressions and body language.</text>
+      </svg>
+      <div class="pic-caption">Two learners talking face-to-face — notice eye contact and body language.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">💬</div> Discuss in Pairs</div>
+    <ul class="tips-list">
+      <li><span class="tip-icon">📞</span><span>What differences do you notice between a telephone and a face-to-face conversation?</span></li>
+      <li><span class="tip-icon">👁</span><span>In which conversation can you see the other person's face?</span></li>
+      <li><span class="tip-icon">🗣</span><span>Why do you think polite words become even more important on the phone?</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="section" id="sec-step2">
+  <div class="card">
+    <div class="step-header">
+      <div class="step-num s2">2</div>
+      <div><div class="step-label">Listen to the Conversation</div><div style="font-size:12px;color:var(--muted)">Identify polite words &amp; expressions</div></div>
+    </div>
+    <p class="step-desc">Listen carefully to the telephone conversation between James and Mary. Notice the words highlighted in gold — these are the polite expressions used.</p>
+  </div>
+
+  <div class="audio-player">
+    <div class="spk-tags">
+      <div class="spk-tag">📞 James – Caller</div>
+      <div class="spk-tag">📱 Mary – Receiver</div>
+    </div>
+    <div class="audio-controls">
+      <button class="audio-btn play" id="playBtn" onclick="startConv()">▶ Play Conversation</button>
+      <button class="audio-btn stop" id="stopBtn" onclick="stopConv()" disabled>⏹ Stop</button>
+    </div>
+    <div class="speed-row">🐢 Speed:
+      <select id="speedSel" onchange="spd=parseFloat(this.value)">
+        <option value="0.75">Slow (0.75x)</option>
+        <option value="0.9" selected>Normal</option>
+        <option value="1.1">Fast (1.1x)</option>
+      </select>
+    </div>
+    <div class="audio-progress"><div class="audio-progress-fill" id="apFill"></div></div>
+    <div class="audio-status" id="aStatus">Tap Play to begin.</div>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px" id="convWrap">
+      <div class="conv-line" id="cl0"><div class="conv-avatar">📞</div><div class="conv-body"><div class="conv-name">James – Caller</div><div class="conv-bubble"><span class="ph">Hello</span>, <span class="ph">good morning</span>. This is James speaking. May I <span class="ph">please</span> speak to Mary?</div></div></div>
+      <div class="conv-line right" id="cl1"><div class="conv-avatar">📱</div><div class="conv-body"><div class="conv-name">Mary – Receiver</div><div class="conv-bubble"><span class="ph">Good morning</span>, James! Mary speaking. How are you?</div></div></div>
+      <div class="conv-line" id="cl2"><div class="conv-avatar">📞</div><div class="conv-body"><div class="conv-name">James – Caller</div><div class="conv-bubble">I am well, <span class="ph">thank you</span> for asking. I am calling because I <span class="ph">would like</span> to enquire about the human rights meeting, <span class="ph">if you don't mind</span>.</div></div></div>
+      <div class="conv-line right" id="cl3"><div class="conv-avatar">📱</div><div class="conv-body"><div class="conv-name">Mary – Receiver</div><div class="conv-bubble"><span class="ph">Of course</span>, not at all. The meeting is on Friday at two o'clock. <span class="ph">Would that be convenient for you?</span></div></div></div>
+      <div class="conv-line" id="cl4"><div class="conv-avatar">📞</div><div class="conv-body"><div class="conv-name">James – Caller</div><div class="conv-bubble">Yes, Friday works well. <span class="ph">Thank you very much</span>. <span class="ph">Could you kindly</span> send me the venue details as well?</div></div></div>
+      <div class="conv-line right" id="cl5"><div class="conv-avatar">📱</div><div class="conv-body"><div class="conv-name">Mary – Receiver</div><div class="conv-bubble"><span class="ph">Certainly!</span> I will send them shortly. <span class="ph">Is there anything else I can help you with?</span></div></div></div>
+      <div class="conv-line" id="cl6"><div class="conv-avatar">📞</div><div class="conv-body"><div class="conv-name">James – Caller</div><div class="conv-bubble">No, that will be all. <span class="ph">Thank you so much</span> for your time. I really appreciate your help.</div></div></div>
+      <div class="conv-line right" id="cl7"><div class="conv-avatar">📱</div><div class="conv-body"><div class="conv-name">Mary – Receiver</div><div class="conv-bubble">It is my <span class="ph">pleasure</span>. Have a wonderful day. <span class="ph">Goodbye!</span></div></div></div>
+      <div class="conv-line" id="cl8"><div class="conv-avatar">📞</div><div class="conv-body"><div class="conv-name">James – Caller</div><div class="conv-bubble"><span class="ph">Goodbye</span>, Mary. <span class="ph">Take care</span>. <span class="ph">Thank you</span> once again!</div></div></div>
+    </div>
+  </div>
+
+  <div class="polite-legend">
+    <h4>⭐ Polite Expressions in This Conversation</h4>
+    <div class="polite-tags">
+      <span class="polite-tag">Hello</span><span class="polite-tag">Good morning</span><span class="polite-tag">May I please…</span><span class="polite-tag">Thank you</span><span class="polite-tag">I would like…</span><span class="polite-tag">If you don't mind</span><span class="polite-tag">Of course</span><span class="polite-tag">Would that be convenient?</span><span class="polite-tag">Could you kindly…</span><span class="polite-tag">Certainly</span><span class="polite-tag">Is there anything else?</span><span class="polite-tag">Thank you so much</span><span class="polite-tag">It is my pleasure</span><span class="polite-tag">Goodbye</span><span class="polite-tag">Take care</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="section" id="sec-step3">
+  <div class="card">
+    <div class="step-header">
+      <div class="step-num s3">3</div>
+      <div><div class="step-label">Arrange the Conversation</div><div style="font-size:12px;color:var(--muted)">Drag cards into the correct order — 10 pairs</div></div>
+    </div>
+    <p class="step-desc">Each pair picks a set from the tabs below. The conversation lines are jumbled up — drag them into the correct order. Tap 🔊 on any card to hear it read aloud. Get them all right and the full conversation plays as your reward! 🎁</p>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button class="dd-a11y-btn dd-on" id="ddBtnTTS" onclick="ddToggleTTS()">🔊 Read Aloud: ON</button>
+      <button class="dd-a11y-btn" id="ddBtnLarge" onclick="ddToggleLarge()">🔡 Large Text: OFF</button>
+    </div>
+  </div>
+  <div class="dd-tabs-wrap">
+    <div class="dd-tabs-label">🎯 Choose your pair's set</div>
+    <div class="dd-tabs-scroll" id="ddTabsScroll"></div>
+  </div>
+  <div id="ddMain"></div>
+  <div class="dd-all-done" id="ddAllDone">
+    <div style="font-size:36px;margin-bottom:8px">🏆🎉🌟</div>
+    <h2 style="font-size:20px;font-weight:800;margin-bottom:6px">All Sets Completed!</h2>
+    <p style="font-size:13px;opacity:.9;line-height:1.7">Fantastic work! Every pair has mastered polite telephone conversations!</p>
+    <button class="dd-restart-btn" onclick="ddRestartAll()">🔄 Play Again</button>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="section" id="sec-step4">
+  <div class="card">
+    <div class="step-header">
+      <div class="step-num s4">4</div>
+      <div><div class="step-label">Role-Play Activity</div><div style="font-size:12px;color:var(--muted)">In pairs — record your role-play</div></div>
+    </div>
+    <p class="step-desc">Each scenario is assigned to two pairs of learners. Read your scenario, then tap <strong>🎙 Record</strong> to record your role-play. Listen back and see how you did!</p>
+  </div>
+
+  <!-- SCENARIO 1 -->
+  <div class="scenario-card" style="background:linear-gradient(135deg,#0d47a1,#1976d2)">
+    <h3>🎭 Scenario 1 — Library Enquiry</h3>
+    <p>You are calling your school library to find out when a book on human rights will be available. Be polite and use proper telephone etiquette throughout.</p>
+    <div class="role-chips"><div class="role-chip">📞 Caller: Student</div><div class="role-chip">📱 Receiver: Librarian</div></div>
+  </div>
+  <div class="rec-panel">
+    <div class="rec-pairs">
+      <div class="rec-pair-label">📞 Caller</div>
+      <div class="rec-pair-label">📱 Receiver</div>
+    </div>
+    <div class="rec-slots">
+      <div class="rec-slot" id="rs-1a">
+        <div class="rec-slot-top">
+          <span class="rec-pair-tag">📞 Student</span>
+          <span class="rec-timer" id="rt-1a">0:00</span>
+        </div>
+        <div class="rec-btn-row">
+          <button class="rec-btn rec-start" onclick="startRec('1a')">🎙 Record</button>
+          <button class="rec-btn rec-stop" onclick="stopRec('1a')" disabled>⏹ Stop</button>
+        </div>
+        <div class="rec-playback" id="rp-1a"></div>
+        <div class="rec-status" id="rstat-1a">Ready to record</div>
+      </div>
+      <div class="rec-slot" id="rs-1b">
+        <div class="rec-slot-top">
+          <span class="rec-pair-tag">📱 Librarian</span>
+          <span class="rec-timer" id="rt-1b">0:00</span>
+        </div>
+        <div class="rec-btn-row">
+          <button class="rec-btn rec-start" onclick="startRec('1b')">🎙 Record</button>
+          <button class="rec-btn rec-stop" onclick="stopRec('1b')" disabled>⏹ Stop</button>
+        </div>
+        <div class="rec-playback" id="rp-1b"></div>
+        <div class="rec-status" id="rstat-1b">Ready to record</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 2 -->
+  <div class="scenario-card" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">
+    <h3>🎭 Scenario 2 — Human Rights Event Invitation</h3>
+    <p>You are calling a friend to invite them to a human rights awareness event at school next Saturday. Be polite and leave a message if they are unavailable.</p>
+    <div class="role-chips"><div class="role-chip">📞 Caller: You</div><div class="role-chip">📱 Receiver: Friend / Parent</div></div>
+  </div>
+  <div class="rec-panel">
+    <div class="rec-slots">
+      <div class="rec-slot" id="rs-2a">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📞 You (Caller)</span><span class="rec-timer" id="rt-2a">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('2a')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('2a')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-2a"></div>
+        <div class="rec-status" id="rstat-2a">Ready to record</div>
+      </div>
+      <div class="rec-slot" id="rs-2b">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📱 Friend / Parent</span><span class="rec-timer" id="rt-2b">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('2b')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('2b')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-2b"></div>
+        <div class="rec-status" id="rstat-2b">Ready to record</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 3 -->
+  <div class="scenario-card" style="background:linear-gradient(135deg,#b71c1c,#e53935)">
+    <h3>🎭 Scenario 3 — Reporting Bullying</h3>
+    <p>You are a learner calling the school office to report that a classmate is being bullied on the way home. Explain the situation clearly and politely, and ask what steps the school will take to help.</p>
+    <div class="role-chips"><div class="role-chip">📞 Caller: Learner</div><div class="role-chip">📱 Receiver: School Deputy Principal</div></div>
+  </div>
+  <div class="rec-panel">
+    <div class="rec-slots">
+      <div class="rec-slot" id="rs-3a">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📞 Learner</span><span class="rec-timer" id="rt-3a">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('3a')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('3a')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-3a"></div>
+        <div class="rec-status" id="rstat-3a">Ready to record</div>
+      </div>
+      <div class="rec-slot" id="rs-3b">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📱 Deputy Principal</span><span class="rec-timer" id="rt-3b">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('3b')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('3b')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-3b"></div>
+        <div class="rec-status" id="rstat-3b">Ready to record</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 4 -->
+  <div class="scenario-card" style="background:linear-gradient(135deg,#e65100,#f57c00)">
+    <h3>🎭 Scenario 4 — Health Centre Enquiry</h3>
+    <p>You are calling the local health centre to ask about free medical check-ups available for school children in your area. Ask for the dates, times, and what to bring along.</p>
+    <div class="role-chips"><div class="role-chip">📞 Caller: Parent / Guardian</div><div class="role-chip">📱 Receiver: Health Centre Receptionist</div></div>
+  </div>
+  <div class="rec-panel">
+    <div class="rec-slots">
+      <div class="rec-slot" id="rs-4a">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📞 Parent / Guardian</span><span class="rec-timer" id="rt-4a">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('4a')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('4a')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-4a"></div>
+        <div class="rec-status" id="rstat-4a">Ready to record</div>
+      </div>
+      <div class="rec-slot" id="rs-4b">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📱 Health Receptionist</span><span class="rec-timer" id="rt-4b">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('4b')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('4b')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-4b"></div>
+        <div class="rec-status" id="rstat-4b">Ready to record</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 5 -->
+  <div class="scenario-card" style="background:linear-gradient(135deg,#006064,#00838f)">
+    <h3>🎭 Scenario 5 — Clean Water Report</h3>
+    <p>You are calling a newspaper office to report that children in your village do not have access to clean water. You want the story covered to raise awareness about the community's right to clean water.</p>
+    <div class="role-chips"><div class="role-chip">📞 Caller: Community Member</div><div class="role-chip">📱 Receiver: Newspaper Reporter</div></div>
+  </div>
+  <div class="rec-panel">
+    <div class="rec-slots">
+      <div class="rec-slot" id="rs-5a">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📞 Community Member</span><span class="rec-timer" id="rt-5a">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('5a')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('5a')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-5a"></div>
+        <div class="rec-status" id="rstat-5a">Ready to record</div>
+      </div>
+      <div class="rec-slot" id="rs-5b">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📱 Newspaper Reporter</span><span class="rec-timer" id="rt-5b">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('5b')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('5b')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-5b"></div>
+        <div class="rec-status" id="rstat-5b">Ready to record</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 6 -->
+  <div class="scenario-card" style="background:linear-gradient(135deg,#37474f,#546e7a)">
+    <h3>🎭 Scenario 6 — School Transfer Enquiry</h3>
+    <p>You are calling the county education office to enquire about the process for transferring to a different school. Ask politely for the requirements and the person responsible for transfers.</p>
+    <div class="role-chips"><div class="role-chip">📞 Caller: Parent</div><div class="role-chip">📱 Receiver: Education Office Clerk</div></div>
+  </div>
+  <div class="rec-panel">
+    <div class="rec-slots">
+      <div class="rec-slot" id="rs-6a">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📞 Parent</span><span class="rec-timer" id="rt-6a">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('6a')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('6a')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-6a"></div>
+        <div class="rec-status" id="rstat-6a">Ready to record</div>
+      </div>
+      <div class="rec-slot" id="rs-6b">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📱 Education Clerk</span><span class="rec-timer" id="rt-6b">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('6b')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('6b')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-6b"></div>
+        <div class="rec-status" id="rstat-6b">Ready to record</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 7 -->
+  <div class="scenario-card" style="background:linear-gradient(135deg,#4a148c,#7b1fa2)">
+    <h3>🎭 Scenario 7 — Radio Station Request</h3>
+    <p>You are calling a radio station to request that they broadcast information about children's rights during their community programme. Introduce yourself, explain your reason for calling, and make your request politely.</p>
+    <div class="role-chips"><div class="role-chip">📞 Caller: Youth Representative</div><div class="role-chip">📱 Receiver: Radio Station Producer</div></div>
+  </div>
+  <div class="rec-panel">
+    <div class="rec-slots">
+      <div class="rec-slot" id="rs-7a">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📞 Youth Representative</span><span class="rec-timer" id="rt-7a">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('7a')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('7a')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-7a"></div>
+        <div class="rec-status" id="rstat-7a">Ready to record</div>
+      </div>
+      <div class="rec-slot" id="rs-7b">
+        <div class="rec-slot-top"><span class="rec-pair-tag">📱 Radio Producer</span><span class="rec-timer" id="rt-7b">0:00</span></div>
+        <div class="rec-btn-row"><button class="rec-btn rec-start" onclick="startRec('7b')">🎙 Record</button><button class="rec-btn rec-stop" onclick="stopRec('7b')" disabled>⏹ Stop</button></div>
+        <div class="rec-playback" id="rp-7b"></div>
+        <div class="rec-status" id="rstat-7b">Ready to record</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">💡</div> Tips for Your Role-Play</div>
+    <ul class="tips-list">
+      <li><span class="tip-icon">👋</span><span>Always greet the person and introduce yourself first.</span></li>
+      <li><span class="tip-icon">🗣</span><span>Speak clearly and at a steady pace — not too fast.</span></li>
+      <li><span class="tip-icon">🙏</span><span>Use polite words: <em>please, thank you, may I, certainly, of course.</em></span></li>
+      <li><span class="tip-icon">👂</span><span>Listen without interrupting and wait for your turn to speak.</span></li>
+      <li><span class="tip-icon">👋</span><span>End the call politely: <em>Goodbye, take care, thank you for your time.</em></span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ASSESS -->
+<div class="section" id="sec-assess">
+  <div class="card">
+    <div class="card-title"><div class="icon">✅</div> Self-Assessment Checklist</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Tap each item you were able to do in today's lesson.</p>
+    <div id="checkList">
+      <div class="assess-item" onclick="toggleCheck(this)"><div class="assess-check">✓</div><div class="assess-text">I can identify polite words and phrases used in a telephone conversation.</div></div>
+      <div class="assess-item" onclick="toggleCheck(this)"><div class="assess-check">✓</div><div class="assess-text">I can explain the difference between a telephone and a face-to-face conversation.</div></div>
+      <div class="assess-item" onclick="toggleCheck(this)"><div class="assess-check">✓</div><div class="assess-text">I can use polite expressions when starting and ending a telephone call.</div></div>
+      <div class="assess-item" onclick="toggleCheck(this)"><div class="assess-check">✓</div><div class="assess-text">I was able to match the telephone conversation flashcards correctly.</div></div>
+      <div class="assess-item" onclick="toggleCheck(this)"><div class="assess-check">✓</div><div class="assess-text">I participated in the role-play activity and used polite language.</div></div>
+      <div class="assess-item" onclick="toggleCheck(this)"><div class="assess-check">✓</div><div class="assess-text">I acknowledge that telephone etiquette is important in real-life communication.</div></div>
+    </div>
+    <div id="checkResult" style="margin-top:16px;font-size:14px;font-weight:700;text-align:center;color:var(--teal)"></div>
+  </div>
+  <div class="card">
+    <div class="card-title"><div class="icon">🏠</div> Extended Activity</div>
+    <p style="font-size:14px;line-height:1.7;color:var(--muted)">In groups, search the internet and print materials for <strong>rules of telephone etiquette</strong>. Write them on a manila paper and display to the class.</p>
+    <div class="q-box" style="margin-top:12px">
+      <p>🔍 Things to search for</p>
+      <ul>
+        <li>Rules for polite telephone conversations</li>
+        <li>How to leave a telephone message politely</li>
+        <li>Telephone etiquette in the workplace</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <button class="bnav-btn active" onclick="showTab('intro')"><span class="bicon">🎯</span>Intro</button>
+  <button class="bnav-btn" onclick="showTab('step1')"><span class="bicon">📷</span>Step 1</button>
+  <button class="bnav-btn" onclick="showTab('step2')"><span class="bicon">🔊</span>Step 2</button>
+  <button class="bnav-btn" onclick="showTab('step3')"><span class="bicon">🃏</span>Step 3</button>
+  <button class="bnav-btn" onclick="showTab('step4')"><span class="bicon">🎭</span>Step 4</button>
+  <button class="bnav-btn" onclick="showTab('assess')"><span class="bicon">✅</span>Assess</button>
+</div>
+<div style="height:70px"></div>
+
+<script>
+// TAB NAVIGATION
+var tabMap = {intro:'sec-intro',step1:'sec-step1',step2:'sec-step2',step3:'sec-step3',step4:'sec-step4',assess:'sec-assess'};
+var ddInited = false;
+function showTab(id) {
+  Object.keys(tabMap).forEach(function(k) {
+    document.getElementById(tabMap[k]).classList.toggle('active', k===id);
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('onclick').indexOf("'"+id+"'") !== -1);
+  });
+  document.querySelectorAll('.bnav-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('onclick').indexOf("'"+id+"'") !== -1);
+  });
+  if (id === 'step3' && !ddInited) { ddInited = true; ddInit(); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// AUDIO PLAYER
+var convLines = [
+  {txt:"Hello, good morning. This is James speaking. May I please speak to Mary?", caller:true},
+  {txt:"Good morning, James! Mary speaking. How are you?", caller:false},
+  {txt:"I am well, thank you for asking. I am calling because I would like to enquire about the human rights meeting, if you don't mind.", caller:true},
+  {txt:"Of course, not at all. The meeting is on Friday at two o'clock. Would that be convenient for you?", caller:false},
+  {txt:"Yes, Friday works well. Thank you very much. Could you kindly send me the venue details as well?", caller:true},
+  {txt:"Certainly! I will send them shortly. Is there anything else I can help you with?", caller:false},
+  {txt:"No, that will be all. Thank you so much for your time. I really appreciate your help.", caller:true},
+  {txt:"It is my pleasure. Have a wonderful day. Goodbye!", caller:false},
+  {txt:"Goodbye, Mary. Take care. Thank you once again!", caller:true}
+];
+var playing = false;
+var spd = 0.9;
+var synth = window.speechSynthesis;
+if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = function(){ synth.getVoices(); };
+
+function setLine(i, st) {
+  var el = document.getElementById('cl'+i);
+  if (!el) return;
+  el.classList.remove('active','done');
+  if (st) el.classList.add(st);
+}
+// TELEPHONE RING using Web Audio API
+function playTelephoneRing(onDone) {
+  var AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) { onDone(); return; }
+  var ctx = new AudioCtx();
+
+  function makeRingTone(startTime, duration) {
+    // Classic telephone ring: two tones (350Hz + 440Hz) like an old bell
+    [350, 440].forEach(function(freq) {
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+      // Sharp attack, steady ring, quick fade
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.28, startTime + 0.02);
+      gain.gain.setValueAtTime(0.28, startTime + duration - 0.05);
+      gain.gain.linearRampToValueAtTime(0, startTime + duration);
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    });
+    // Add a subtle click/bell shimmer on each ring start
+    var click = ctx.createOscillator();
+    var clickGain = ctx.createGain();
+    click.connect(clickGain);
+    clickGain.connect(ctx.destination);
+    click.type = 'triangle';
+    click.frequency.setValueAtTime(900, startTime);
+    click.frequency.exponentialRampToValueAtTime(200, startTime + 0.08);
+    clickGain.gain.setValueAtTime(0.15, startTime);
+    clickGain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
+    click.start(startTime);
+    click.stop(startTime + 0.08);
+  }
+
+  // Play 3 rings: ring(0.5s) silence(0.3s) ring(0.5s) silence(0.3s) ring(0.5s)
+  // then a "pick up" click sound, then call onDone
+  var now = ctx.currentTime + 0.1;
+  makeRingTone(now, 0.5);
+  makeRingTone(now + 0.8, 0.5);
+  makeRingTone(now + 1.6, 0.5);
+
+  // Pickup click — short descending tone simulating receiver being picked up
+  var pickup = ctx.createOscillator();
+  var pickupGain = ctx.createGain();
+  pickup.connect(pickupGain);
+  pickupGain.connect(ctx.destination);
+  pickup.type = 'square';
+  pickup.frequency.setValueAtTime(600, now + 2.3);
+  pickup.frequency.exponentialRampToValueAtTime(80, now + 2.45);
+  pickupGain.gain.setValueAtTime(0.2, now + 2.3);
+  pickupGain.gain.exponentialRampToValueAtTime(0.001, now + 2.45);
+  pickup.start(now + 2.3);
+  pickup.stop(now + 2.5);
+
+  // Call onDone after all sounds finish
+  setTimeout(onDone, (now + 2.6 - ctx.currentTime) * 1000);
+}
+
+function startConv() {
+  if (!('speechSynthesis' in window)) { document.getElementById('aStatus').textContent='Speech not supported. Use Chrome or Edge.'; return; }
+  stopConv(); playing = true;
+  document.getElementById('playBtn').disabled = true;
+  document.getElementById('stopBtn').disabled = false;
+  document.getElementById('aStatus').innerHTML = '📳 <strong>Ring ring...</strong> Telephone is ringing!';
+  fbLogStep2();
+
+  // Play ring sound first, then start conversation
+  playTelephoneRing(function() {
+    if (!playing) return; // user may have stopped
+    document.getElementById('aStatus').innerHTML = '📞 <strong>Call connected!</strong> Conversation starting...';
+    setTimeout(function(){ speakLine(0); }, 600);
+  });
+}
+function speakLine(i) {
+  if (!playing || i >= convLines.length) { finishConv(); return; }
+  for (var x=0; x<convLines.length; x++) setLine(x, x<i?'done':x===i?'active':null);
+  document.getElementById('apFill').style.width = ((i+1)/convLines.length*100)+'%';
+  var l = convLines[i];
+  document.getElementById('aStatus').innerHTML = 'Speaking: <strong>'+(l.caller?'James (Caller)':'Mary (Receiver)')+'</strong> — '+(i+1)+' of '+convLines.length;
+  var el = document.getElementById('cl'+i);
+  if (el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  var u = new SpeechSynthesisUtterance(l.txt);
+  u.rate = spd; u.pitch = l.caller ? 0.95 : 1.15; u.volume = 1;
+  var vs = synth.getVoices();
+  var mv = vs.find(function(v){ return v.lang.indexOf('en')===0 && /male|david|mark/i.test(v.name); });
+  var fv = vs.find(function(v){ return v.lang.indexOf('en')===0 && /female|zira|samantha/i.test(v.name); });
+  var fb = vs.find(function(v){ return v.lang.indexOf('en')===0; });
+  if (l.caller && mv) u.voice=mv; else if (!l.caller && fv) u.voice=fv; else if (fb) u.voice=fb;
+  u.onend = function(){ if(playing) setTimeout(function(){ speakLine(i+1); }, 500); };
+  u.onerror = function(){ if(playing) setTimeout(function(){ speakLine(i+1); }, 600); };
+  synth.speak(u);
+}
+function stopConv() {
+  playing = false; synth.cancel();
+  for (var i=0; i<9; i++) setLine(i, null);
+  document.getElementById('apFill').style.width = '0%';
+  document.getElementById('playBtn').disabled = false;
+  document.getElementById('stopBtn').disabled = true;
+  document.getElementById('aStatus').textContent = 'Stopped. Tap Play to restart.';
+}
+function finishConv() {
+  playing = false;
+  for (var i=0; i<9; i++) setLine(i,'done');
+  document.getElementById('apFill').style.width = '100%';
+  document.getElementById('playBtn').disabled = false;
+  document.getElementById('stopBtn').disabled = true;
+  document.getElementById('aStatus').innerHTML = 'Done! Discuss the polite expressions with your partner.';
+}
+
+// DRAG-DROP STEP 3
+var ddSynth = window.speechSynthesis;
+var ddTtsOn = true, ddLargeOn = false, ddCelebPlaying = false;
+var ddDragging = null, ddCurrentSet = 0;
+var ddStates = [];
+var DD_SETS = [
+  {
+    title:"Set A – Student calls the Library",
+    icon:"📚",
+    callerLabel:"Student (Aisha)",
+    receiverLabel:"Librarian (Mr. Sifuna)",
+    context:"Based on Scenario 1. A student calls the school library to find out when a book on human rights will be available.",
+    lines:[
+      {s:"Caller",   t:"Good morning. This is Aisha, a Grade Eight learner. May I please speak to the librarian?"},
+      {s:"Receiver", t:"Good morning, Aisha. This is Mr. Sifuna, the librarian. How may I help you?"},
+      {s:"Caller",   t:"Good morning, Mr. Sifuna. I am calling to find out when the book titled The Rights of a Child will be available for borrowing."},
+      {s:"Receiver", t:"Thank you for calling. Let me check our records. Could you kindly hold for a moment, please?"},
+      {s:"Caller",   t:"Of course. I will hold. Thank you, Mr. Sifuna."},
+      {s:"Receiver", t:"Thank you for your patience, Aisha. The book will be returned and available from Wednesday morning."},
+      {s:"Caller",   t:"That is wonderful news. May I reserve a copy in advance, please?"},
+      {s:"Receiver", t:"Certainly. I will put your name down. Please come to the library on Wednesday with your library card."},
+      {s:"Caller",   t:"I will do that. Thank you so much for your help, Mr. Sifuna. Have a good day."},
+      {s:"Receiver", t:"You are welcome, Aisha. We look forward to seeing you on Wednesday. Goodbye!"}
+    ]
+  },
+  {
+    title:"Set B – Invitation to a Human Rights Event",
+    icon:"🎤",
+    callerLabel:"Student (Brian)",
+    receiverLabel:"Friend Parent (Mrs. Atieno)",
+    context:"Based on Scenario 2. A student calls a friend to invite them to a human rights awareness event at school next Saturday.",
+    lines:[
+      {s:"Caller",   t:"Hello, good evening. May I please speak to Kevin?"},
+      {s:"Receiver", t:"Good evening. This is Kevin mother, Mrs. Atieno. Kevin is not available at the moment. May I take a message?"},
+      {s:"Caller",   t:"Good evening, Mrs. Atieno. My name is Brian, Kevin classmate. I would appreciate it if you could pass on a message, please."},
+      {s:"Receiver", t:"Of course, Brian. Please go ahead."},
+      {s:"Caller",   t:"I would like to invite Kevin to a human rights awareness event at our school next Saturday at ten in the morning."},
+      {s:"Receiver", t:"That sounds like a wonderful event. I will make sure Kevin gets the message."},
+      {s:"Caller",   t:"Thank you very much, Mrs. Atieno. Could you also let him know that he should confirm attendance by Friday?"},
+      {s:"Receiver", t:"Certainly, Brian. I will pass on all the details to him this evening."},
+      {s:"Caller",   t:"Thank you so much for your help. I really appreciate your kindness. Goodbye, Mrs. Atieno."},
+      {s:"Receiver", t:"You are welcome, Brian. Have a lovely evening. Goodbye!"}
+    ]
+  },
+  {
+    title:"Set C – Reporting Bullying to the School",
+    icon:"🏫",
+    callerLabel:"Learner (Samuel)",
+    receiverLabel:"Deputy Principal (Mr. Korir)",
+    context:"Based on Scenario 3. A learner calls the school office to report that a classmate is being bullied.",
+    lines:[
+      {s:"Caller",   t:"Good afternoon. May I please speak to the Deputy Principal?"},
+      {s:"Receiver", t:"Good afternoon. This is Mr. Korir, the Deputy Principal. How may I help you?"},
+      {s:"Caller",   t:"Good afternoon, Mr. Korir. My name is Samuel from Grade Eight. I am calling to report a serious concern about a classmate, if I may."},
+      {s:"Receiver", t:"Of course, Samuel. Please go ahead. I am listening carefully."},
+      {s:"Caller",   t:"My classmate Diana has been bullied by some older students on her way home every day this week. I am very concerned about her safety."},
+      {s:"Receiver", t:"Thank you for bringing this to my attention, Samuel. That is indeed a serious matter. Did you witness this yourself?"},
+      {s:"Caller",   t:"Yes, sir. I witnessed it twice this week near the gate. Diana was too afraid to report it herself."},
+      {s:"Receiver", t:"You have done the right thing by calling. I will investigate the matter first thing tomorrow and ensure Diana is protected."},
+      {s:"Caller",   t:"Thank you very much, Mr. Korir. I was worried but I knew it was the right thing to do."},
+      {s:"Receiver", t:"You were very brave, Samuel. The school takes such matters very seriously. Goodbye and thank you again."}
+    ]
+  },
+  {
+    title:"Set D – Health Centre Enquiry",
+    icon:"🏥",
+    callerLabel:"Parent (Mrs. Ouma)",
+    receiverLabel:"Health Receptionist (Nurse Wata)",
+    context:"Based on Scenario 4. A parent calls the local health centre to ask about free medical check-ups for school children.",
+    lines:[
+      {s:"Caller",   t:"Good morning. May I please speak to someone at the health centre about the children check-up programme?"},
+      {s:"Receiver", t:"Good morning. This is Nurse Wata at Sunrise Health Centre. How may I assist you?"},
+      {s:"Caller",   t:"Good morning, Nurse Wata. My name is Mrs. Ouma. I am calling to enquire about free medical check-ups available for school children in our area."},
+      {s:"Receiver", t:"Thank you for calling, Mrs. Ouma. Yes, we do offer free check-ups for school children. The next session is on Thursday and Friday this week."},
+      {s:"Caller",   t:"That is very helpful. What time do the check-ups begin, please?"},
+      {s:"Receiver", t:"The check-ups begin at eight in the morning and run until three in the afternoon on both days."},
+      {s:"Caller",   t:"Thank you. Could you kindly tell me what we need to bring along, please?"},
+      {s:"Receiver", t:"Please bring the child birth certificate, immunisation card, and the school letter of permission if coming during school hours."},
+      {s:"Caller",   t:"Understood. Thank you so much, Nurse Wata. You have been very helpful. I will bring my son on Thursday."},
+      {s:"Receiver", t:"You are most welcome, Mrs. Ouma. We look forward to seeing your son. Goodbye and have a wonderful day!"}
+    ]
+  },
+  {
+    title:"Set E – Reporting Lack of Clean Water",
+    icon:"💧",
+    callerLabel:"Community Member (Mr. Lweya)",
+    receiverLabel:"Newspaper Reporter (Ms. Nduta)",
+    context:"Based on Scenario 5. A community member calls a newspaper to report that children lack access to clean water.",
+    lines:[
+      {s:"Caller",   t:"Good morning. May I please speak to a reporter at the Daily Herald newspaper?"},
+      {s:"Receiver", t:"Good morning. This is Ms. Nduta, a reporter. How may I help you?"},
+      {s:"Caller",   t:"Good morning, Ms. Nduta. My name is Mr. Lweya from Kambi Village. I would like to report a serious issue affecting children in our community."},
+      {s:"Receiver", t:"Good morning, Mr. Lweya. Please go ahead. I am ready to take notes."},
+      {s:"Caller",   t:"Children in our village do not have access to clean drinking water. They have been drinking from an unclean river for three months and many have fallen ill."},
+      {s:"Receiver", t:"That is a very serious concern, Mr. Lweya. This is a clear violation of children rights. Could you give me the exact location of the village?"},
+      {s:"Caller",   t:"Yes. Kambi Village is located about twenty kilometres from Busia town, along the Busia-Kisumu road."},
+      {s:"Receiver", t:"Thank you. We would like to send a journalist to document the situation. Would this week be convenient for you?"},
+      {s:"Caller",   t:"Yes, any day this week would be fine. Thank you so much for taking this seriously, Ms. Nduta."},
+      {s:"Receiver", t:"It is our responsibility to amplify such important issues. We will be in touch. Goodbye, Mr. Lweya."}
+    ]
+  },
+  {
+    title:"Set F – School Transfer Enquiry",
+    icon:"🏛",
+    callerLabel:"Parent (Mr. Simiyu)",
+    receiverLabel:"Education Clerk (Ms. Chebet)",
+    context:"Based on Scenario 6. A parent calls the county education office about transferring a child to a different school.",
+    lines:[
+      {s:"Caller",   t:"Good morning. I would like to speak to someone about a school transfer, please."},
+      {s:"Receiver", t:"Good morning. This is Ms. Chebet at the County Education Office. How may I assist you?"},
+      {s:"Caller",   t:"Good morning, Ms. Chebet. My name is Mr. Simiyu. I would like to enquire about the process for transferring my daughter to a different school."},
+      {s:"Receiver", t:"Of course, Mr. Simiyu. Could you tell me which schools are involved and the reason for the transfer, please?"},
+      {s:"Caller",   t:"She is currently at Nambuku Junior School and I would like to transfer her to Eastview Junior School because we are relocating."},
+      {s:"Receiver", t:"I understand. You will need a transfer letter from the current school, a transfer application form from our office, and proof of your new residence."},
+      {s:"Caller",   t:"Thank you, Ms. Chebet. Could you kindly tell me how long the process usually takes?"},
+      {s:"Receiver", t:"Once all documents are submitted, the transfer is usually processed within five to seven working days."},
+      {s:"Caller",   t:"That is very helpful. Thank you so much for the clear explanation. I will visit your office this week."},
+      {s:"Receiver", t:"You are welcome, Mr. Simiyu. We are open Monday to Friday, eight to five. Goodbye and all the best."}
+    ]
+  },
+  {
+    title:"Set G – Radio Station Request",
+    icon:"📻",
+    callerLabel:"Youth Representative (Faith)",
+    receiverLabel:"Radio Producer (Mr. Omondi)",
+    context:"Based on Scenario 7. A youth representative calls a radio station to request a broadcast on children rights.",
+    lines:[
+      {s:"Caller",   t:"Good afternoon. May I please speak to the programme producer at Sauti Radio?"},
+      {s:"Receiver", t:"Good afternoon. This is Mr. Omondi, the producer at Sauti Radio. How may I help you?"},
+      {s:"Caller",   t:"Good afternoon, Mr. Omondi. My name is Faith. I am a youth representative from Nambuku Junior School. I am calling to make a request for your community programme."},
+      {s:"Receiver", t:"Good afternoon, Faith. That is very impressive. Please go ahead. What is your request?"},
+      {s:"Caller",   t:"I would like to request that your programme dedicates time to broadcasting information about children rights, especially the right to education, health, and protection from violence."},
+      {s:"Receiver", t:"That is a very important and commendable request, Faith. When would you suggest we air this programme?"},
+      {s:"Caller",   t:"If possible, it would be wonderful to air it on a Saturday morning when many children are at home and can listen."},
+      {s:"Receiver", t:"That is an excellent suggestion. We could also invite a guest speaker from a children rights organisation. Would your school be willing to participate?"},
+      {s:"Caller",   t:"Absolutely, Mr. Omondi. We would be honoured to participate. Thank you so much for considering our request."},
+      {s:"Receiver", t:"Thank you for reaching out, Faith. You have shown great initiative. We will be in touch. Goodbye and well done!"}
+    ]
+  }
+];
+
+function ddInit() {
+  ddStates = DD_SETS.map(function(){ return {done:false, slots:[], moves:0}; });
+  ddBuildTabs();
+  ddRenderSet(0);
+}
+
+function ddGetVoice(isCaller) {
+  var vs = ddSynth.getVoices();
+  var en = vs.filter(function(v){ return v.lang.indexOf('en') === 0; });
+  var m = en.find(function(v){ return /male|david|mark/i.test(v.name); });
+  var f = en.find(function(v){ return /female|zira|samantha|karen/i.test(v.name); });
+  return (isCaller && m) ? m : (!isCaller && f) ? f : (en[0] || vs[0]);
+}
+
+function ddSpeak(text, speaker, btn) {
+  ddSynth.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  var ic = (speaker === 'Caller');
+  u.rate = 0.88; u.pitch = ic ? 0.95 : 1.18; u.volume = 1;
+  var v = ddGetVoice(ic); if (v) u.voice = v;
+  if (btn) {
+    btn.classList.add('dd-talking');
+    u.onend = u.onerror = function(){ btn.classList.remove('dd-talking'); };
+  }
+  ddSynth.speak(u);
+}
+
+function ddToggleTTS() {
+  ddTtsOn = !ddTtsOn;
+  var b = document.getElementById('ddBtnTTS');
+  b.textContent = '🔊 Read Aloud: ' + (ddTtsOn ? 'ON' : 'OFF');
+  b.classList.toggle('dd-on', ddTtsOn);
+  if (!ddTtsOn) ddSynth.cancel();
+}
+
+function ddToggleLarge() {
+  ddLargeOn = !ddLargeOn;
+  var b = document.getElementById('ddBtnLarge');
+  b.textContent = '🔡 Large Text: ' + (ddLargeOn ? 'ON' : 'OFF');
+  b.classList.toggle('dd-on', ddLargeOn);
+  document.querySelectorAll('.dd-card-text').forEach(function(el){
+    el.classList.toggle('dd-large', ddLargeOn);
+  });
+}
+
+function ddBuildTabs() {
+  var wrap = document.getElementById('ddTabsScroll');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  DD_SETS.forEach(function(s, i) {
+    var b = document.createElement('button');
+    b.className = 'dd-tab' + (i === ddCurrentSet ? ' dd-active' : '') + (ddStates[i].done ? ' dd-done' : '');
+    b.textContent = s.icon + ' ' + s.title.split('–')[0].trim() + '–' + (s.title.split('–')[1]||'').trim();
+    (function(idx){ b.addEventListener('click', function(){ ddSwitchSet(idx); }); })(i);
+    wrap.appendChild(b);
+  });
+}
+
+function ddSwitchSet(i) {
+  ddSynth.cancel(); ddCelebPlaying = false;
+  ddCurrentSet = i;
+  ddBuildTabs();
+  ddRenderSet(i);
+}
+
+function ddRenderSet(idx) {
+  var set = DD_SETS[idx];
+  var st = ddStates[idx];
+  st.slots = new Array(set.lines.length).fill(null);
+  st.moves = 0;
+  var main = document.getElementById('ddMain');
+  if (!main) return;
+  main.innerHTML = '';
+
+  // Context card
+  var ctx = document.createElement('div'); ctx.className = 'dd-ctx';
+  var ci = document.createElement('div'); ci.className = 'dd-ctx-icon'; ci.textContent = set.icon;
+  var cb = document.createElement('div');
+  var ct = document.createElement('div'); ct.className = 'dd-ctx-title'; ct.textContent = set.title;
+  var cs = document.createElement('div'); cs.className = 'dd-ctx-sub'; cs.textContent = set.context;
+  var cr = document.createElement('div'); cr.style.cssText = 'display:flex;gap:8px;margin-top:8px;flex-wrap:wrap';
+  var crA = document.createElement('span'); crA.style.cssText = 'background:#e8f1ff;border:1.5px solid #b3d0f7;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;color:#1565c0';
+  crA.textContent = '📞 ' + set.callerLabel;
+  var crB = document.createElement('span'); crB.style.cssText = 'background:#f3e5ff;border:1.5px solid #ce93d8;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;color:#6a1b9a';
+  crB.textContent = '📱 ' + set.receiverLabel;
+  cr.appendChild(crA); cr.appendChild(crB);
+  cb.appendChild(ct); cb.appendChild(cs); cb.appendChild(cr); ctx.appendChild(ci); ctx.appendChild(cb);
+  main.appendChild(ctx);
+
+  // Instruction
+  var ins = document.createElement('div'); ins.className = 'dd-instr';
+  ins.innerHTML = '<strong>How to play:</strong> The conversation is jumbled up. Drag each card into the correct numbered slot. Tap <strong>🔊</strong> to hear any card. Arrange all lines correctly and the full conversation plays as your reward! 🎁';
+  main.appendChild(ins);
+
+  // Scores
+  var sc = document.createElement('div'); sc.className = 'dd-scores';
+  sc.innerHTML = '<div class="dd-score dm">🔄 <span id="ddMoves">0</span> moves</div>' +
+    '<div class="dd-score dok">✅ <span id="ddOk">0</span> correct</div>' +
+    '<div class="dd-score dbad">❌ <span id="ddBad">0</span> wrong</div>';
+  main.appendChild(sc);
+
+  // Jumble box
+  var jb = document.createElement('div'); jb.className = 'dd-box';
+  var jl = document.createElement('div'); jl.className = 'dd-box-label'; jl.textContent = '📋 Jumbled Cards — drag from here';
+  var jc = document.createElement('div'); jc.id = 'ddJCards';
+  jb.appendChild(jl); jb.appendChild(jc); main.appendChild(jb);
+  jc.addEventListener('dragover', function(e){ e.preventDefault(); });
+  jc.addEventListener('drop', function(e){ e.preventDefault(); ddReturnToJumble(); });
+
+  // Answer box
+  var ab = document.createElement('div'); ab.className = 'dd-box';
+  var al = document.createElement('div'); al.className = 'dd-box-label'; al.textContent = '📝 Your Answer — drop cards here in order';
+  var slotsDiv = document.createElement('div'); slotsDiv.id = 'ddSlots';
+  for (var i = 0; i < set.lines.length; i++) { slotsDiv.appendChild(ddMakeSlot(i)); }
+  ab.appendChild(al); ab.appendChild(slotsDiv); main.appendChild(ab);
+
+  // Buttons
+  var br = document.createElement('div'); br.className = 'dd-btn-row';
+  var bc = document.createElement('button'); bc.className = 'dd-btn dd-btn-check'; bc.textContent = '✅ Check Answer';
+  bc.addEventListener('click', function(){ ddCheckAnswer(); });
+  var brs = document.createElement('button'); brs.className = 'dd-btn dd-btn-reset'; brs.textContent = '🔄 Reset';
+  brs.addEventListener('click', function(){ ddRenderSet(ddCurrentSet); });
+  var bk = document.createElement('button'); bk.className = 'dd-btn dd-btn-key'; bk.textContent = '🔑 Show Key';
+  bk.addEventListener('click', function(){
+    var k = document.getElementById('ddKeyBox'); if (k) k.classList.toggle('show');
+  });
+  br.appendChild(bc); br.appendChild(brs); br.appendChild(bk); main.appendChild(br);
+
+  // Feedback
+  var fb = document.createElement('div'); fb.id = 'ddFb'; fb.className = 'dd-fb'; main.appendChild(fb);
+
+  // Celebration
+  main.appendChild(ddMakeCelebration(idx));
+
+  // Answer key
+  var kb = document.createElement('div'); kb.id = 'ddKeyBox'; kb.className = 'dd-key-box';
+  var kh = document.createElement('h3'); kh.textContent = '✅ Correct Order'; kb.appendChild(kh);
+  set.lines.forEach(function(line, i) {
+    var kl = document.createElement('div'); kl.className = 'dd-kline';
+    var kn = document.createElement('div'); kn.className = 'dd-knum'; kn.textContent = i + 1;
+    var kbody = document.createElement('div');
+    var kw = document.createElement('div'); kw.className = 'dd-kwho ' + (line.s === 'Caller' ? 'dd-cc' : 'dd-rc');
+    kw.textContent = (line.s === 'Caller' ? '📞 ' + set.callerLabel : '📱 ' + set.receiverLabel);
+    var kt = document.createElement('div'); kt.textContent = line.t;
+    kbody.appendChild(kw); kbody.appendChild(kt); kl.appendChild(kn); kl.appendChild(kbody); kb.appendChild(kl);
+  });
+  main.appendChild(kb);
+
+  // Next btn
+  var nb = document.createElement('button'); nb.className = 'dd-next-btn'; nb.id = 'ddNextBtn';
+  nb.textContent = 'Next Set ➡';
+  if (ddStates[idx].done && idx < DD_SETS.length - 1) nb.classList.add('show');
+  nb.addEventListener('click', function(){ if (ddCurrentSet < DD_SETS.length - 1) ddSwitchSet(ddCurrentSet + 1); });
+  main.appendChild(nb);
+
+  // Populate shuffled cards
+  var shuffled = ddShuffle(set.lines.map(function(l, i){ return {s: l.s, t: l.t, origIdx: i}; }));
+  shuffled.forEach(function(line){ jc.appendChild(ddMakeCard(line, false, null)); });
+  ddInitTouch();
+}
+
+function ddMakeCard(line, placed, slotIdx) {
+  var set = DD_SETS[ddCurrentSet];
+  var card = document.createElement('div');
+  card.className = 'dd-jcard ' + (line.s === 'Caller' ? 'dd-caller' : 'dd-receiver');
+  card.setAttribute('draggable', 'true');
+  card.dataset.origIdx = line.origIdx;
+  card.dataset.speaker = line.s;
+  if (slotIdx !== null && slotIdx !== undefined) card.dataset.slotIdx = slotIdx;
+
+  var handle = document.createElement('div'); handle.className = 'dd-handle'; handle.textContent = '⠿';
+  var body = document.createElement('div'); body.className = 'dd-card-body';
+  var who = document.createElement('div'); who.className = 'dd-card-who';
+  who.textContent = (line.s === 'Caller' ? '📞 ' + set.callerLabel : '📱 ' + set.receiverLabel);
+  var txt = document.createElement('div'); txt.className = 'dd-card-text' + (ddLargeOn ? ' dd-large' : '');
+  txt.textContent = line.t;
+  body.appendChild(who); body.appendChild(txt);
+
+  var spk = document.createElement('button'); spk.className = 'dd-spk'; spk.textContent = '🔊'; spk.title = 'Tap to hear';
+  (function(l, b){ b.addEventListener('click', function(e){ e.stopPropagation(); ddSpeak(l.t, l.s, b); }); })(line, spk);
+
+  card.appendChild(handle); card.appendChild(body); card.appendChild(spk);
+
+  card.addEventListener('dragstart', function(e){
+    ddDragging = card; e.dataTransfer.setData('text/plain', '1');
+    setTimeout(function(){ card.classList.add('dd-dragging'); }, 0);
+  });
+  card.addEventListener('dragend', function(){ card.classList.remove('dd-dragging'); });
+  card.addEventListener('click', function(e){
+    if (e.target.classList.contains('dd-spk')) return;
+    if (ddTtsOn) ddSpeak(line.t, line.s, spk);
+  });
+  return card;
+}
+
+function ddMakeSlot(i) {
+  var slot = document.createElement('div');
+  slot.className = 'dd-slot'; slot.id = 'dds-' + i; slot.dataset.slot = i;
+  slot.textContent = 'Line ' + (i + 1);
+  slot.addEventListener('dragover', function(e){ e.preventDefault(); slot.classList.add('dd-over'); });
+  slot.addEventListener('dragleave', function(){ slot.classList.remove('dd-over'); });
+  slot.addEventListener('drop', function(e){ e.preventDefault(); slot.classList.remove('dd-over'); ddDropOnSlot(slot, i); });
+  return slot;
+}
+
+function ddDropOnSlot(slot, slotIdx) {
+  if (!ddDragging) return;
+  var origIdx = parseInt(ddDragging.dataset.origIdx);
+  var srcSlot = (ddDragging.dataset.slotIdx !== undefined && ddDragging.dataset.slotIdx !== '') ? parseInt(ddDragging.dataset.slotIdx) : null;
+  var st = ddStates[ddCurrentSet];
+  var set = DD_SETS[ddCurrentSet];
+
+  if (st.slots[slotIdx] !== null) {
+    var ei = st.slots[slotIdx];
+    document.getElementById('ddJCards').appendChild(ddMakeCard({s: set.lines[ei].s, t: set.lines[ei].t, origIdx: ei}, false, null));
+    var os = document.getElementById('dds-' + slotIdx);
+    os.className = 'dd-slot'; os.textContent = 'Line ' + (slotIdx + 1);
+    ddReAttach(os, slotIdx);
+    st.slots[slotIdx] = null;
+  }
+
+  var newCard = ddMakeCard({s: set.lines[origIdx].s, t: set.lines[origIdx].t, origIdx: origIdx}, true, slotIdx);
+  slot.className = 'dd-slot dd-filled'; slot.textContent = ''; slot.appendChild(newCard);
+  st.slots[slotIdx] = origIdx;
+
+  if (srcSlot !== null) {
+    st.slots[srcSlot] = null;
+    var ss = document.getElementById('dds-' + srcSlot);
+    ss.className = 'dd-slot'; ss.textContent = 'Line ' + (srcSlot + 1);
+    ddReAttach(ss, srcSlot);
+  } else { ddDragging.remove(); }
+
+  st.moves++;
+  var sm = document.getElementById('ddMoves'); if (sm) sm.textContent = st.moves;
+  ddDragging = null; ddInitTouch();
+  if (ddTtsOn) ddSpeak(set.lines[origIdx].t, set.lines[origIdx].s, null);
+}
+
+function ddReAttach(slot, i) {
+  slot.addEventListener('dragover', function(e){ e.preventDefault(); slot.classList.add('dd-over'); });
+  slot.addEventListener('dragleave', function(){ slot.classList.remove('dd-over'); });
+  slot.addEventListener('drop', function(e){ e.preventDefault(); slot.classList.remove('dd-over'); ddDropOnSlot(slot, i); });
+}
+
+function ddReturnToJumble() {
+  if (!ddDragging) return;
+  var srcSlot = (ddDragging.dataset.slotIdx !== undefined && ddDragging.dataset.slotIdx !== '') ? parseInt(ddDragging.dataset.slotIdx) : null;
+  if (srcSlot === null) return;
+  var origIdx = parseInt(ddDragging.dataset.origIdx);
+  var st = ddStates[ddCurrentSet];
+  var set = DD_SETS[ddCurrentSet];
+  st.slots[srcSlot] = null;
+  var ss = document.getElementById('dds-' + srcSlot);
+  ss.className = 'dd-slot'; ss.textContent = 'Line ' + (srcSlot + 1);
+  ddReAttach(ss, srcSlot);
+  document.getElementById('ddJCards').appendChild(ddMakeCard({s: set.lines[origIdx].s, t: set.lines[origIdx].t, origIdx: origIdx}, false, null));
+  ddDragging = null; ddInitTouch();
+}
+
+function ddCheckAnswer() {
+  var set = DD_SETS[ddCurrentSet];
+  var st = ddStates[ddCurrentSet];
+  var total = set.lines.length;
+  var filled = st.slots.filter(function(x){ return x !== null; }).length;
+  var fb = document.getElementById('ddFb');
+
+  if (filled < total) {
+    fb.className = 'dd-fb warn show';
+    fb.textContent = 'Please fill all ' + total + ' slots before checking.';
+    return;
+  }
+
+  var correct = 0;
+  st.slots.forEach(function(origIdx, si) {
+    var se = document.getElementById('dds-' + si);
+    var card = se ? se.querySelector('.dd-jcard') : null;
+    if (!card) return;
+    if (origIdx === si) {
+      correct++;
+      card.classList.remove('dd-caller', 'dd-receiver', 'dd-wrong');
+      card.classList.add('dd-correct');
+    } else {
+      card.classList.remove('dd-caller', 'dd-receiver', 'dd-correct');
+      card.classList.add('dd-wrong');
+    }
+  });
+
+  var wrong = total - correct;
+  var so = document.getElementById('ddOk'); if (so) so.textContent = correct;
+  var sb = document.getElementById('ddBad'); if (sb) sb.textContent = wrong;
+
+  if (correct === total) {
+    fb.className = 'dd-fb ok show';
+    fb.textContent = 'Perfect! All ' + total + ' lines in the right order!';
+    ddStates[ddCurrentSet].done = true;
+    fbLogStep3(DD_SETS[ddCurrentSet].title);
+    ddBuildTabs();
+    var cel = document.getElementById('ddCeleb');
+    if (cel) { cel.classList.add('show'); cel.scrollIntoView({behavior: 'smooth', block: 'start'}); }
+    setTimeout(function(){ ddStartCeleb(ddCurrentSet); }, 900);
+    var nb = document.getElementById('ddNextBtn');
+    if (nb && ddCurrentSet < DD_SETS.length - 1) nb.classList.add('show');
+    if (ddStates.every(function(s){ return s.done; })) {
+      var ad = document.getElementById('ddAllDone');
+      if (ad) { ad.classList.add('show'); setTimeout(function(){ ad.scrollIntoView({behavior: 'smooth'}); }, 400); }
+    }
+  } else if (correct >= Math.ceil(total * 0.6)) {
+    fb.className = 'dd-fb warn show';
+    fb.textContent = 'Good effort! ' + correct + ' of ' + total + ' correct. Red lines are wrong — try fixing them!';
+  } else {
+    fb.className = 'dd-fb bad show';
+    fb.textContent = correct + ' of ' + total + ' correct. Review the cards and try again. You can do it!';
+  }
+}
+
+function ddMakeCelebration(idx) {
+  var set = DD_SETS[idx];
+  var wrap = document.createElement('div'); wrap.id = 'ddCeleb'; wrap.className = 'dd-celeb';
+  var top = document.createElement('div'); top.className = 'dd-celeb-top';
+  top.innerHTML = '<div style="font-size:34px;margin-bottom:6px">🎉🏆🎁</div>' +
+    '<h2 style="font-size:19px;font-weight:800;margin-bottom:4px">Perfect! Well Done!</h2>' +
+    '<p style="font-size:13px;opacity:.9;line-height:1.6">You arranged all lines correctly! Listen to the full conversation play as your reward!</p>';
+
+  var body = document.createElement('div'); body.className = 'dd-celeb-body';
+  var bh = document.createElement('h3'); bh.textContent = '🎧 Listen to the Full Conversation'; body.appendChild(bh);
+  var ld = document.createElement('div'); ld.id = 'ddCelebLines';
+
+  set.lines.forEach(function(line, i) {
+    var cl = document.createElement('div'); cl.id = 'ddcl-' + i;
+    cl.className = 'dd-cline ' + (line.s === 'Caller' ? 'dd-caller' : 'dd-receiver');
+    var av = document.createElement('div'); av.className = 'dd-cline-av';
+    av.textContent = (line.s === 'Caller' ? '📞' : '📱');
+    var ct = document.createElement('div'); ct.className = 'dd-cline-txt';
+    var cw = document.createElement('div');
+    cw.className = 'dd-cline-who ' + (line.s === 'Caller' ? 'dd-cc' : 'dd-rc');
+    cw.textContent = (line.s === 'Caller' ? '📞 ' + set.callerLabel : '📱 ' + set.receiverLabel);
+    var ctxt = document.createElement('div'); ctxt.textContent = line.t;
+    ct.appendChild(cw); ct.appendChild(ctxt);
+    cl.appendChild(av); cl.appendChild(ct); ld.appendChild(cl);
+  });
+
+  body.appendChild(ld);
+  var btns = document.createElement('div'); btns.className = 'dd-celeb-btns';
+  var pp = document.createElement('button'); pp.className = 'dd-cbtn dd-cbtn-play'; pp.id = 'ddCelebPlay'; pp.textContent = '▶ Play Conversation';
+  (function(i){ pp.addEventListener('click', function(){ ddStartCeleb(i); }); })(idx);
+  var sp = document.createElement('button'); sp.className = 'dd-cbtn dd-cbtn-stop'; sp.id = 'ddCelebStop'; sp.textContent = '⏹ Stop'; sp.disabled = true;
+  sp.addEventListener('click', function(){ ddStopCeleb(); });
+  btns.appendChild(pp); btns.appendChild(sp); body.appendChild(btns);
+  wrap.appendChild(top); wrap.appendChild(body);
+  return wrap;
+}
+
+function ddStartCeleb(idx) {
+  ddSynth.cancel(); ddCelebPlaying = true;
+  var pp = document.getElementById('ddCelebPlay'); var sp = document.getElementById('ddCelebStop');
+  if (pp) pp.disabled = true; if (sp) sp.disabled = false;
+  ddPlayCelebLine(idx, 0);
+}
+
+function ddPlayCelebLine(idx, i) {
+  var set = DD_SETS[idx];
+  if (!ddCelebPlaying || i >= set.lines.length) { ddEndCeleb(); return; }
+  document.querySelectorAll('.dd-cline').forEach(function(el){ el.classList.remove('dd-lit'); });
+  var el = document.getElementById('ddcl-' + i);
+  if (el) { el.classList.add('dd-lit'); el.scrollIntoView({behavior: 'smooth', block: 'nearest'}); }
+  var line = set.lines[i];
+  var u = new SpeechSynthesisUtterance(line.t);
+  u.rate = 0.88; u.pitch = (line.s === 'Caller') ? 0.95 : 1.18; u.volume = 1;
+  var v = ddGetVoice(line.s === 'Caller'); if (v) u.voice = v;
+  u.onend = function(){ if (ddCelebPlaying) setTimeout(function(){ ddPlayCelebLine(idx, i + 1); }, 380); };
+  u.onerror = function(){ if (ddCelebPlaying) setTimeout(function(){ ddPlayCelebLine(idx, i + 1); }, 400); };
+  ddSynth.speak(u);
+}
+
+function ddStopCeleb() {
+  ddCelebPlaying = false; ddSynth.cancel();
+  document.querySelectorAll('.dd-cline').forEach(function(el){ el.classList.remove('dd-lit'); });
+  var pp = document.getElementById('ddCelebPlay'); var sp = document.getElementById('ddCelebStop');
+  if (pp) pp.disabled = false; if (sp) sp.disabled = true;
+}
+
+function ddEndCeleb() {
+  ddCelebPlaying = false;
+  document.querySelectorAll('.dd-cline').forEach(function(el){ el.classList.remove('dd-lit'); });
+  var pp = document.getElementById('ddCelebPlay'); var sp = document.getElementById('ddCelebStop');
+  if (pp) pp.disabled = false; if (sp) sp.disabled = true;
+}
+
+function ddRestartAll() {
+  ddSynth.cancel(); ddCelebPlaying = false;
+  ddStates = DD_SETS.map(function(){ return {done: false, slots: [], moves: 0}; });
+  ddCurrentSet = 0; ddBuildTabs(); ddRenderSet(0);
+  var ad = document.getElementById('ddAllDone'); if (ad) ad.classList.remove('show');
+}
+
+function ddInitTouch() {
+  var ghost = null, tc = null;
+  function onStart(e) {
+    if (e.target.classList.contains('dd-spk')) return;
+    tc = e.currentTarget;
+    var t = e.touches[0];
+    ghost = tc.cloneNode(true);
+    ghost.style.cssText = 'position:fixed;z-index:9999;opacity:.85;pointer-events:none;width:' + tc.offsetWidth + 'px;transform:scale(1.05);box-shadow:0 10px 28px rgba(0,0,0,.25);border-radius:12px;left:' + (t.clientX - tc.offsetWidth / 2) + 'px;top:' + (t.clientY - tc.offsetHeight / 2) + 'px';
+    document.body.appendChild(ghost); tc.style.opacity = '0.2'; e.preventDefault();
+  }
+  function onMove(e) {
+    if (!ghost) return;
+    var t = e.touches[0];
+    ghost.style.left = (t.clientX - ghost.offsetWidth / 2) + 'px';
+    ghost.style.top  = (t.clientY - ghost.offsetHeight / 2) + 'px';
+    e.preventDefault();
+  }
+  function onEnd(e) {
+    if (!ghost || !tc) return;
+    ghost.remove(); ghost = null; tc.style.opacity = '1';
+    var t = e.changedTouches[0];
+    var el = document.elementFromPoint(t.clientX, t.clientY);
+    ddDragging = tc;
+    if (el) {
+      var slot = el.closest('.dd-slot');
+      var jc   = el.closest('#ddJCards');
+      if (slot && slot.dataset.slot !== undefined) ddDropOnSlot(slot, parseInt(slot.dataset.slot));
+      else if (jc) ddReturnToJumble();
+    }
+    tc = null; ddDragging = null;
+  }
+  document.querySelectorAll('.dd-jcard').forEach(function(c) {
+    c.removeEventListener('touchstart', c._ddts || null);
+    c.removeEventListener('touchmove',  c._ddtm || null);
+    c.removeEventListener('touchend',   c._ddte || null);
+    c._ddts = onStart; c._ddtm = onMove; c._ddte = onEnd;
+    c.addEventListener('touchstart', onStart, {passive: false});
+    c.addEventListener('touchmove',  onMove,  {passive: false});
+    c.addEventListener('touchend',   onEnd,   {passive: false});
+  });
+}
+
+function ddShuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+// ── FIREBASE TRACKING ──
+var FB_CONFIG = {
+  apiKey: "AIzaSyDXzydewPT2ng5ve6II9PAUAHP4pew2GXI",
+  authDomain: "g8lessonstracker.firebaseapp.com",
+  databaseURL: "https://g8lessonstracker-default-rtdb.firebaseio.com",
+  projectId: "g8lessonstracker",
+  storageBucket: "g8lessonstracker.firebasestorage.app",
+  messagingSenderId: "718966061631",
+  appId: "1:718966061631:web:93ae137616991183e0568a"
+};
+
+var fbApp = null, fbDb = null;
+
+function fbInit() {
+  try {
+    if (typeof firebase === 'undefined') return;
+    if (!firebase.apps.length) {
+      fbApp = firebase.initializeApp(FB_CONFIG);
+    } else {
+      fbApp = firebase.apps[0];
+    }
+    fbDb = firebase.database();
+  } catch(e) { console.warn('Firebase init failed:', e); }
+}
+
+function fbNow() {
+  var now = new Date();
+  var pad = function(n){ return n < 10 ? '0'+n : n; };
+  return {
+    time: pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds()),
+    date: now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())
+  };
+}
+
+function fbTrack(path, data) {
+  if (!fbDb) return;
+  fbDb.ref(path).set(data)
+    .then(function(){ console.log('Firebase tracked:', path); })
+    .catch(function(e){ console.warn('Firebase write failed:', e); });
+}
+
+// Step 2 – Audio conversation played
+function fbLogStep2() {
+  var t = fbNow();
+  fbTrack('step2/conversation_played', {
+    event: 'Listened to telephone conversation',
+    time: t.time, date: t.date,
+    school: 'Nambuku Junior School', grade: 'Grade 8'
+  });
+}
+
+// Step 3 – Set completed
+function fbLogStep3(setTitle) {
+  var t = fbNow();
+  var key = setTitle.replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+  fbTrack('step3/' + key, {
+    event: 'Arranged jumbled conversation correctly',
+    set: setTitle, time: t.time, date: t.date,
+    school: 'Nambuku Junior School', grade: 'Grade 8'
+  });
+}
+
+// Step 4 – Recording completed
+function fbLog(scenarioNum, role, durationSecs) {
+  if (!fbDb) return;
+  var scenarioNames = {
+    '1':'Library Enquiry','2':'Human Rights Event','3':'Reporting Bullying',
+    '4':'Health Centre Enquiry','5':'Clean Water Report',
+    '6':'School Transfer','7':'Radio Station Request'
+  };
+  var t = fbNow();
+  var entry = {
+    scenario: 'Scenario ' + scenarioNum + ' – ' + (scenarioNames[scenarioNum]||''),
+    role: role, date: t.date, time: t.time,
+    duration: durationSecs + 's',
+    school: 'Nambuku Junior School', grade: 'Grade 8', status: 'Completed'
+  };
+  var key = 'scenario' + scenarioNum + '_' + role.replace(/[^a-zA-Z0-9]/g,'_');
+  fbTrack('recordings/' + key, entry);
+}
+
+// Assessment – objective ticked
+function fbLogAssess(objNum, text, totalDone, totalAll) {
+  var t = fbNow();
+  fbTrack('assessment/obj_' + objNum, {
+    objective: text, status: 'Achieved',
+    progress: totalDone + '/' + totalAll,
+    time: t.time, date: t.date,
+    school: 'Nambuku Junior School', grade: 'Grade 8'
+  });
+}
+
+// VOICE RECORDING
+var recStates = {};
+var mediaRecorders = {};
+var recChunks = {};
+var recTimers = {};
+
+function startRec(id) {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    setRecStatus(id, 'Microphone not supported on this browser.', 'error');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream) {
+    var slot = document.getElementById('rs-'+id);
+    slot.classList.add('recording');
+    slot.classList.remove('done');
+
+    var startBtn = slot.querySelector('.rec-start');
+    var stopBtn = slot.querySelector('.rec-stop');
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+
+    // Clear old playback
+    document.getElementById('rp-'+id).innerHTML = '';
+
+    recChunks[id] = [];
+    var mr = new MediaRecorder(stream);
+    mediaRecorders[id] = mr;
+    mr.ondataavailable = function(e) { if (e.data.size > 0) recChunks[id].push(e.data); };
+    mr.onstop = function() {
+      stream.getTracks().forEach(function(t){ t.stop(); });
+      var blob = new Blob(recChunks[id], {type:'audio/webm'});
+      var url = URL.createObjectURL(blob);
+      var audio = document.createElement('audio');
+      audio.controls = true;
+      audio.src = url;
+      document.getElementById('rp-'+id).appendChild(audio);
+      var slot2 = document.getElementById('rs-'+id);
+      slot2.classList.remove('recording');
+      slot2.classList.add('done');
+      slot2.querySelector('.rec-start').disabled = false;
+      slot2.querySelector('.rec-stop').disabled = true;
+      setRecStatus(id, 'Recording saved! Tap play to listen.', 'done');
+      clearInterval(recTimers[id]);
+
+      // ── Log to Firebase ──
+      var scenarioNum = id.replace(/[ab]$/, '');
+      var roleLetter = id.slice(-1);
+      var recEl = document.getElementById('rt-'+id);
+      var duration = recEl ? recEl.textContent : '0:00';
+      var parts = duration.split(':');
+      var totalSecs = parseInt(parts[0]||0)*60 + parseInt(parts[1]||0);
+      var role = roleLetter === 'a' ? 'Caller' : 'Receiver';
+      fbLog(scenarioNum, role, totalSecs);
+    };
+    mr.start();
+
+    // Timer
+    var secs = 0;
+    setRecStatus(id, 'Recording... speak now!', 'recording');
+    recTimers[id] = setInterval(function() {
+      secs++;
+      var m = Math.floor(secs/60);
+      var s = secs % 60;
+      var el = document.getElementById('rt-'+id);
+      if (el) el.textContent = m+':'+(s<10?'0':'')+s;
+    }, 1000);
+
+  }).catch(function(err) {
+    var msg = err.name === 'NotAllowedError'
+      ? 'Microphone access denied. Please allow microphone in browser settings.'
+      : 'Could not access microphone: '+err.message;
+    setRecStatus(id, msg, 'error');
+  });
+}
+
+function stopRec(id) {
+  if (mediaRecorders[id] && mediaRecorders[id].state !== 'inactive') {
+    mediaRecorders[id].stop();
+  }
+  clearInterval(recTimers[id]);
+}
+
+function setRecStatus(id, msg, type) {
+  var el = document.getElementById('rstat-'+id);
+  if (!el) return;
+  el.textContent = msg;
+  if (type === 'recording') el.style.color = 'var(--red)';
+  else if (type === 'done') el.style.color = 'var(--green)';
+  else if (type === 'error') el.style.color = 'var(--red)';
+  else el.style.color = 'var(--muted)';
+}
+
+function toggleCheck(row) {
+  var box = row.querySelector('.assess-check');
+  box.classList.toggle('checked');
+  var total = document.querySelectorAll('.assess-check').length;
+  var done = document.querySelectorAll('.assess-check.checked').length;
+  var res = document.getElementById('checkResult');
+  if (done === 0) res.textContent = '';
+  else if (done === total) res.textContent = 'Outstanding! You achieved all lesson outcomes!';
+  else res.textContent = done+' of '+total+' objectives achieved. Keep it up!';
+  // Track assessment in Firebase
+  if (box.classList.contains('checked')) {
+    var objText = row.querySelector('.assess-text') ? row.querySelector('.assess-text').textContent : '';
+    var allItems = document.querySelectorAll('.assess-item');
+    var objNum = Array.from(allItems).indexOf(row) + 1;
+    fbLogAssess(objNum, objText, done, total);
+  }
+}
+
+// Initialize drag-drop on page load (hidden section, safe because ddRenderSet
+// only writes to #ddMain which exists in the DOM even when sec-step3 is hidden)
+window.addEventListener('load', function() {
+  fbInit();
+  ddInited = true;
+  ddInit();
+});
+</script>
+</body>
+</html>
