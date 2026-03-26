@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOBE ACADEMY - Timetable Management</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        :root { --primary: #2563eb; --bg: #ffffff; --border: #000000; --danger: #ef4444; --success: #10b981; }
+        body { font-family: "Arial", sans-serif; background: #f4f4f4; margin: 0; padding: 10px; color: #000; font-size: 12px; }
+        .container { max-width: 1500px; margin: 0 auto; background: #fff; padding: 15px; border-radius: 4px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        
+        .no-print { display: flex; gap: 8px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
+        button, select, input { padding: 8px 12px; border: 1px solid #ccc; background: #fff; cursor: pointer; font-weight: bold; border-radius: 4px; }
+        button:hover { background: #eee; }
+        button.active { background: var(--primary); color: white; border-color: var(--primary); }
+        button.gen { background: var(--success); color: white; border: none; }
+        button.clear { background: var(--danger); color: white; border: none; }
+        
+        .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .setup-card { border: 1px solid #ccc; padding: 15px; border-radius: 4px; }
+
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 5px; border-bottom: 1px solid #eee; gap: 5px; }
+        .btn-del { color: var(--danger); border-color: var(--danger); padding: 2px 6px; }
+        .btn-move { padding: 2px 6px; font-size: 10px; }
+
+        .table-wrapper { width: 100%; overflow-x: auto; margin-top: 10px; border: 1px solid #eee; }
+        .entity-label { font-size: 20px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; margin-top: 15px; text-align: center; width: 100%; display: block; }
+        
+        table { width: 100%; border-collapse: collapse; min-width: 800px; table-layout: fixed; }
+        th, td { border: 1px solid var(--border); text-align: center; vertical-align: middle; padding: 4px; height: 45px; word-wrap: break-word; }
+        
+        .header-row-1 { background: #f2f2f2; height: 30px; font-weight: bold; }
+        .header-row-2 { background: #ffffff; height: 25px; font-size: 10px; }
+        .day-cell { font-weight: bold; width: 60px; background: #f9f9f9; }
+        .grade-cell { font-weight: bold; width: 80px; }
+        .subject-line { font-weight: bold; font-size: 11px; }
+        .info-line { display: block; font-size: 9px; margin-top: 2px; }
+        
+        .break-cell { font-weight: bold; font-size: 14px; background: #f0f0f0; color: #333; text-align: center; }
+        .vertical-text { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; display: inline-block; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .manual-select { width: 95%; font-size: 9px; padding: 2px; }
+        .hidden { display: none; }
+
+        @media print {
+            @page { size: landscape; margin: 0.5cm; }
+            .no-print, h1, .manual-controls { display: none !important; }
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; width: 100%; padding: 0; border: none; }
+            .hidden { display: block !important; }
+            .table-wrapper { overflow: visible; border: none; }
+            [contenteditable="true"] { border-bottom: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="no-print" style="text-align:center;">SOBE ACADEMY Timetable</h1>
+    
+    <div class="no-print">
+        <button onclick="switchView('setup')">⚙️ Setup</button>
+        <button class="active" id="btn-master" onclick="switchView('master')">📅 Master View</button>
+        <button onclick="switchView('class')">🏫 Class View</button>
+        <button onclick="switchView('teacher')">👨‍🏫 Teacher View</button>
+        <button onclick="switchView('analysis')">📊 Analysis</button>
+    </div>
+
+    <div class="no-print">
+        <button class="gen" onclick="generateTimetable()">⚡ Auto-Generate</button>
+        <button class="clear" onclick="clearData()">🧹 Reset Everything</button>
+        <button onclick="window.print()" style="background:#444; color:white;">🖨️ Print Landscape</button>
+    </div>
+
+    <div id="setupView" class="hidden no-print">
+        <div class="setup-grid">
+            <div class="setup-card">
+                <h3>1. Periods & Breaks</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <input type="text" id="pName" placeholder="e.g. 1, 2, BREAK">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <input type="time" id="pStart" style="flex:1"> to <input type="time" id="pEnd" style="flex:1">
+                    </div>
+                    <label style="cursor: pointer;"><input type="checkbox" id="isBreak"> Mark as Break</label>
+                    <button onclick="addPeriod()" style="background: var(--primary); color: white; border: none;">Add Period</button>
+                </div>
+                <hr>
+                <div id="periodList" style="max-height: 300px; overflow-y: auto;"></div>
+            </div>
+
+            <div class="setup-card">
+                <h3>2. Learning Areas (CBE)</h3>
+                <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+                    <input type="text" id="sName" placeholder="Name" style="flex: 2;">
+                    <input type="number" id="sFreq" placeholder="Freq" style="flex: 1;">
+                    <button onclick="addSubject()">Add</button>
+                </div>
+                <div id="subjectList" style="max-height: 400px; overflow-y: auto; border: 1px solid #eee; padding: 5px;"></div>
+            </div>
+
+            <div class="setup-card">
+                <h3>3. Grades & Teachers</h3>
+                <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+                    <input type="text" id="gName" placeholder="e.g. Grade 7" style="flex:1">
+                    <button onclick="addGrade()">Add Grade</button>
+                </div>
+                <div id="gradeList" style="max-height: 100px; overflow-y: auto; margin-bottom: 10px; border: 1px solid #eee; padding: 5px;"></div>
+                
+                <hr>
+                <h4>Link Teacher</h4>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <input type="text" id="tName" placeholder="Teacher Name">
+                    <select id="tSubSelect"></select>
+                    <select id="tGradeSelect"></select>
+                    <button onclick="assignTeacher()" style="background: #666; color: white;">Assign</button>
+                </div>
+                <hr>
+                <div id="assignList" style="font-size:10px; max-height: 150px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="masterView">
+        <div class="entity-label">MASTER TIMETABLE</div>
+        <div class="no-print manual-controls" style="text-align: center; margin-bottom: 10px;">
+            <button id="manualToggle" onclick="toggleManualMode()" style="background: #f59e0b; color: white;">Enable Manual Edit</button>
+        </div>
+        <div class="table-wrapper" id="masterTable"></div>
+    </div>
+
+    <div id="classView" class="hidden">
+        <div class="entity-label" id="classLabel">CLASS TIMETABLE</div>
+        <div class="no-print" style="text-align:center; margin-bottom:15px;"><select id="classPicker" onchange="renderClassView()"></select></div>
+        <div class="table-wrapper" id="classTable"></div>
+    </div>
+
+    <div id="teacherView" class="hidden">
+        <div class="entity-label" id="teacherLabel">TEACHER TIMETABLE</div>
+        <div class="no-print" style="text-align:center; margin-bottom:15px;"><select id="teacherPicker" onchange="renderTeacherView()"></select></div>
+        <div class="table-wrapper" id="teacherTable"></div>
+    </div>
+
+    <div id="analysisView" class="hidden">
+        <div class="entity-label">TEACHER LESSON ANALYSIS</div>
+        <div class="table-wrapper" id="analysisTable"></div>
+    </div>
+</div>
+
+<script>
+    const days = ['MON', 'TUE', 'WED', 'THUR', 'FRI'];
+
+    const defaultSubjects = [
+        {name: "English", freq: 5}, {name: "Kiswahili", freq: 4}, {name: "Mathematics", freq: 5},
+        {name: "Integrated Science", freq: 4}, {name: "Health Education", freq: 2}, {name: "Pre-Technical Studies", freq: 4},
+        {name: "Social Studies", freq: 3}, {name: "CRE/IRE/HRE", freq: 3}, {name: "Business Studies", freq: 3},
+        {name: "Agriculture", freq: 3}, {name: "Life Skills", freq: 1}, {name: "Physical Education", freq: 2},
+        {name: "Creative Arts", freq: 3}
+    ];
+    const defaultGrades = ["Grade 7", "Grade 8", "Grade 9"];
+
+    let periods = JSON.parse(localStorage.getItem('tt_periods')) || [];
+    let subjects = JSON.parse(localStorage.getItem('tt_subjects')) || defaultSubjects;
+    let grades = JSON.parse(localStorage.getItem('tt_grades')) || defaultGrades;
+    let assignments = JSON.parse(localStorage.getItem('tt_assigns')) || [];
+    let timetable = JSON.parse(localStorage.getItem('tt_data')) || [];
+    let isManualMode = false;
+
+    function save() {
+        localStorage.setItem('tt_periods', JSON.stringify(periods));
+        localStorage.setItem('tt_subjects', JSON.stringify(subjects));
+        localStorage.setItem('tt_grades', JSON.stringify(grades));
+        localStorage.setItem('tt_assigns', JSON.stringify(assignments));
+        localStorage.setItem('tt_data', JSON.stringify(timetable));
+        refreshUI();
+    }
+
+    function addPeriod() {
+        const name = document.getElementById('pName').value;
+        const start = document.getElementById('pStart').value;
+        const end = document.getElementById('pEnd').value;
+        const isBreak = document.getElementById('isBreak').checked;
+        if(name && start && end) { periods.push({name, start, end, isBreak}); save(); }
+    }
+
+    function movePeriod(index, direction) {
+        if (direction === -1 && index > 0) {
+            [periods[index], periods[index-1]] = [periods[index-1], periods[index]];
+        } else if (direction === 1 && index < periods.length - 1) {
+            [periods[index], periods[index+1]] = [periods[index+1], periods[index]];
+        }
+        save();
+    }
+
+    function addSubject() {
+        const name = document.getElementById('sName').value;
+        const freq = parseInt(document.getElementById('sFreq').value);
+        if(name && freq) { subjects.push({name, freq}); save(); }
+    }
+
+    function editSubject(index, newName, newFreq) {
+        subjects[index].name = newName;
+        subjects[index].freq = parseInt(newFreq);
+        save();
+    }
+
+    function addGrade() {
+        const val = document.getElementById('gName').value;
+        if(val) { grades.push(val); save(); }
+    }
+
+    function assignTeacher() {
+        const name = document.getElementById('tName').value;
+        const sub = document.getElementById('tSubSelect').value;
+        const grade = document.getElementById('tGradeSelect').value;
+        if(name && sub && grade) { assignments.push({ name, sub, grade }); save(); }
+    }
+
+    function clearData() { if(confirm("Reset everything?")) { localStorage.clear(); location.reload(); } }
+
+    function refreshUI() {
+        document.getElementById('periodList').innerHTML = periods.map((p, i) => `
+            <div class="list-item">
+                <span style="flex:1"><b>${p.name}</b> <small>${p.start}-${p.end}</small> ${p.isBreak ? '☕' : ''}</span>
+                <button class="btn-move" onclick="movePeriod(${i}, -1)">▲</button>
+                <button class="btn-move" onclick="movePeriod(${i}, 1)">▼</button>
+                <button class="btn-del" onclick="periods.splice(${i},1); save();">X</button>
+            </div>`).join('');
+
+        document.getElementById('subjectList').innerHTML = subjects.map((s, i) => `
+            <div class="list-item">
+                <input type="text" value="${s.name}" onchange="editSubject(${i}, this.value, ${s.freq})" style="flex:2; border:none; font-size:11px;">
+                <input type="number" value="${s.freq}" onchange="editSubject(${i}, '${s.name}', this.value)" style="width:35px; border:none; font-size:11px;">
+                <button class="btn-del" onclick="subjects.splice(${i},1); save();">X</button>
+            </div>`).join('');
+
+        document.getElementById('gradeList').innerHTML = grades.map((g, i) => `
+            <div class="list-item">
+                <input type="text" value="${g}" onchange="grades[${i}]=this.value; save();" style="flex:1; border:none;">
+                <button class="btn-del" onclick="grades.splice(${i},1); save();">X</button>
+            </div>`).join('');
+
+        document.getElementById('assignList').innerHTML = assignments.map((a, i) => `
+            <div class="list-item">
+                <span>${a.name} → ${a.sub} (${a.grade})</span>
+                <button class="btn-del" onclick="assignments.splice(${i},1); save();">X</button>
+            </div>`).join('');
+
+        document.getElementById('tSubSelect').innerHTML = subjects.map(s => `<option>${s.name}</option>`).join('');
+        document.getElementById('tGradeSelect').innerHTML = grades.map(g => `<option>${g}</option>`).join('');
+        document.getElementById('classPicker').innerHTML = grades.map(g => `<option>${g}</option>`).join('');
+        const teachers = [...new Set(assignments.map(a => a.name))];
+        document.getElementById('teacherPicker').innerHTML = teachers.map(t => `<option>${t}</option>`).join('');
+    }
+
+    function toggleManualMode() {
+        isManualMode = !isManualMode;
+        document.getElementById('manualToggle').innerText = isManualMode ? "Disable Manual Edit" : "Enable Manual Edit";
+        renderMasterView();
+    }
+
+    function updateManualCell(day, period, grade, selectElement) {
+        const val = selectElement.value;
+        timetable = timetable.filter(x => !(x.day === day && x.period === period && x.grade === grade));
+        if (val !== "empty") {
+            const [teacher, subject] = val.split('|');
+            timetable.push({ day, period, grade, subject, teacher });
+        }
+        save();
+    }
+
+    function generateTimetable() {
+        timetable = [];
+        let pool = [];
+        grades.forEach(g => {
+            assignments.filter(a => a.grade === g).forEach(asg => {
+                const subObj = subjects.find(s => s.name === asg.sub);
+                for(let i=0; i<(subObj?subObj.freq:1); i++) pool.push({ grade: g, subject: asg.sub, teacher: asg.name });
+            });
+        });
+        pool.sort(() => Math.random() - 0.5);
+
+        days.forEach(d => {
+            let dailySubjectsByGrade = {};
+            grades.forEach(g => dailySubjectsByGrade[g] = new Set());
+
+            periods.forEach(p => {
+                if(p.isBreak) return;
+                let teachersBusy = new Set();
+                grades.forEach(g => {
+                    const idx = pool.findIndex(item => 
+                        item.grade === g && 
+                        !teachersBusy.has(item.teacher) &&
+                        !dailySubjectsByGrade[g].has(item.subject)
+                    );
+                    
+                    if (idx > -1) {
+                        const lesson = pool.splice(idx, 1)[0];
+                        timetable.push({ day: d, period: p.name, ...lesson });
+                        teachersBusy.add(lesson.teacher);
+                        dailySubjectsByGrade[g].add(lesson.subject);
+                    }
+                });
+            });
+        });
+        save();
+        renderMasterView();
+    }
+
+    function getHeaderHTML(middleLabel, subHeader = "") {
+        const totalCols = periods.length + (middleLabel ? 2 : 1);
+        let h_school = `<tr style="background: #fff;"><th colspan="${totalCols}" style="font-size: 16px; padding: 10px; border-bottom: none;">SOBE ACADEMY</th></tr>`;
+        
+        // Editable Sub-Header row for Class/Teacher View
+        if (subHeader !== "") {
+            h_school += `<tr style="background: #fff;"><th colspan="${totalCols}" style="font-size: 14px; padding: 5px; border-top: none; border-bottom: none;">
+                <div contenteditable="true" style="border-bottom: 1px dashed #666; display: inline-block; min-width: 200px; outline: none; font-weight: bold; text-transform: uppercase;">${subHeader}</div>
+            </th></tr>`;
+        }
+
+        let h1 = h_school + `<tr class="header-row-1"><th>DAY / TIME</th>${middleLabel ? `<th>${middleLabel}</th>` : ''}`;
+        let h2 = `<tr class="header-row-2"><th></th>${middleLabel ? `<th></th>` : ''}`;
+        periods.forEach(p => { h1 += `<th>${p.name}</th>`; h2 += `<th>${p.start} - ${p.end}</th>`; });
+        return h1 + `</tr>` + h2 + `</tr>`;
+    }
+
+    function renderMasterView() {
+        let h = `<table><thead>${getHeaderHTML("GRADE")}</thead><tbody>`;
+        const totalRows = days.length * grades.length;
+        days.forEach((d, dIdx) => {
+            grades.forEach((g, gIdx) => {
+                h += `<tr>`;
+                if(gIdx === 0) h += `<td rowspan="${grades.length}" class="day-cell">${d}</td>`;
+                h += `<td class="grade-cell">${g}</td>`;
+                periods.forEach(p => {
+                    if(p.isBreak) {
+                        if(dIdx === 0 && gIdx === 0) h += `<td rowspan="${totalRows}" class="break-cell"><div class="vertical-text">${p.name}</div></td>`;
+                    } else {
+                        const s = timetable.find(x => x.day === d && x.period === p.name && x.grade === g);
+                        if (isManualMode) {
+                            const gradeAssigns = assignments.filter(a => a.grade === g);
+                            h += `<td><select class="manual-select" onchange="updateManualCell('${d}','${p.name}','${g}', this)">
+                                    <option value="empty">-</option>
+                                    ${gradeAssigns.map(a => `<option value="${a.name}|${a.sub}" ${s && s.teacher === a.name && s.subject === a.sub ? 'selected' : ''}>${a.name} (${a.sub})</option>`).join('')}
+                                  </select></td>`;
+                        } else {
+                            h += `<td><span class="subject-line">${s?s.subject:''}</span><span class="info-line">${s?s.teacher:''}</span></td>`;
+                        }
+                    }
+                });
+                h += `</tr>`;
+            });
+        });
+        document.getElementById('masterTable').innerHTML = h + `</tbody></table>`;
+    }
+
+    function renderAnalysisView() {
+        const teachers = [...new Set(assignments.map(a => a.name))];
+        let h = `<table><thead><tr style="background: #fff;"><th colspan="${days.length + 2}" style="font-size: 16px; padding: 10px;">SOBE ACADEMY</th></tr><tr><th>Teacher</th>`;
+        days.forEach(d => h += `<th>${d}</th>`);
+        h += `<th>Weekly Total</th></tr></thead><tbody>`;
+        teachers.forEach(t => {
+            h += `<tr><td><b>${t}</b></td>`;
+            let weekly = 0;
+            days.forEach(d => {
+                const count = timetable.filter(x => x.day === d && x.teacher === t).length;
+                h += `<td>${count}</td>`;
+                weekly += count;
+            });
+            h += `<td><b>${weekly}</b></td></tr>`;
+        });
+        document.getElementById('analysisTable').innerHTML = h + `</tbody></table>`;
+    }
+
+    function renderClassView() {
+        const val = document.getElementById('classPicker').value;
+        if(!val) return;
+        document.getElementById('classLabel').innerText = val;
+        // Pass the selected class as an editable placeholder
+        let h = `<table><thead>${getHeaderHTML("", val)}</thead><tbody>`;
+        days.forEach((d, dIdx) => {
+            h += `<tr><td class="day-cell">${d}</td>`; 
+            periods.forEach(p => {
+                if(p.isBreak) { if(dIdx === 0) h += `<td rowspan="${days.length}" class="break-cell"><div class="vertical-text">${p.name}</div></td>`; }
+                else {
+                    const s = timetable.find(x => x.day === d && x.period === p.name && x.grade === val);
+                    h += `<td><span class="subject-line">${s?s.subject:''}</span><span class="info-line">${s?s.teacher:''}</span></td>`;
+                }
+            });
+            h += `</tr>`;
+        });
+        document.getElementById('classTable').innerHTML = h + `</tbody></table>`;
+    }
+
+    function renderTeacherView() {
+        const val = document.getElementById('teacherPicker').value;
+        if(!val) return;
+        document.getElementById('teacherLabel').innerText = val;
+        // Pass the selected teacher as an editable placeholder
+        let h = `<table><thead>${getHeaderHTML("", val)}</thead><tbody>`;
+        days.forEach((d, dIdx) => {
+            h += `<tr><td class="day-cell">${d}</td>`; 
+            periods.forEach(p => {
+                if(p.isBreak) { if(dIdx === 0) h += `<td rowspan="${days.length}" class="break-cell"><div class="vertical-text">${p.name}</div></td>`; }
+                else {
+                    const s = timetable.find(x => x.day === d && x.period === p.name && x.teacher === val);
+                    h += `<td><span class="subject-line" style="font-size: 13px;">${s?s.grade:''}</span><span class="info-line" style="font-weight: normal; color: #444;">${s?s.subject:''}</span></td>`;
+                }
+            });
+            h += `</tr>`;
+        });
+        document.getElementById('teacherTable').innerHTML = h + `</tbody></table>`;
+    }
+
+    function switchView(v) {
+        ['setupView','masterView','classView','teacherView','analysisView'].forEach(id => document.getElementById(id).classList.add('hidden'));
+        document.getElementById(v + 'View').classList.remove('hidden');
+        if(v === 'master') renderMasterView();
+        if(v === 'class') renderClassView();
+        if(v === 'teacher') renderTeacherView();
+        if(v === 'analysis') renderAnalysisView();
+    }
+
+    window.onload = () => { refreshUI(); renderMasterView(); };
+</script>
+</body>
+</html>

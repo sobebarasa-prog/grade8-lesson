@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="theme-color" content="#0c1d5e"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="EDUCATION MONITOR"/>
+<title>EDUCATION MONITOR — CBE Portal</title>
+<style>
+:root{
+  --ink:#0f172a;--sub:#475569;--border:#e2e8f0;--bg:#f1f5f9;--wh:#fff;
+  --b:#1d4ed8;--bl:#dbeafe;--g:#15803d;--gl:#dcfce7;
+  --go:#d97706;--gol:#fef3c7;--pu:#7c3aed;--pul:#ede9fe;
+  --r:#dc2626;--rl:#fee2e2;--t:#0f766e;--tl:#ccfbf1;
+  --nav:#0c1d5e;--sh:0 2px 12px rgba(0,0,0,.10);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;font-size:14px;line-height:1.4;-webkit-user-select:none;user-select:none}
+button,input,textarea,select{font-family:inherit;outline:none}
+
+/* LOGIN OVERLAY */
+#login-screen{position:fixed;inset:0;background:var(--nav);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-card{background:var(--wh);border-radius:13px;padding:24px;width:100%;max-width:340px;box-shadow:var(--sh);text-align:center}
+
+/* TOPBAR */
+.topbar{background:linear-gradient(135deg,#0c1d5e,#1d4ed8);padding:12px 16px 10px;color:#fff;flex-shrink:0;padding-top:max(12px,env(safe-area-inset-top,12px));box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.tb-row{display:flex;justify-content:space-between;align-items:center}
+.tb-row h1{font-size:16px;font-weight:900;letter-spacing:-0.3px}
+.tb-row p{font-size:10.5px;opacity:.8;font-weight:600;margin-top:1px}
+.tb-right{display:flex;align-items:center;gap:7px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 5px #4ade80;flex-shrink:0}
+
+/* NAVIGATION */
+.screens{flex:1;overflow:hidden;position:relative}
+.screen{position:absolute;inset:0;overflow-y:auto;padding:13px 13px 88px;display:none;-webkit-overflow-scrolling:touch}
+.screen.on{display:block;animation:fu .2s ease-out}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.bnav{background:var(--wh);border-top:1px solid var(--border);display:flex;flex-shrink:0;box-shadow:0 -2px 8px rgba(0,0,0,.07);padding-bottom:var(--safe-b);overflow-x:auto;scrollbar-width:none}
+.bnav::-webkit-scrollbar{display:none}
+.nb{flex:1;border:none;background:none;cursor:pointer;padding:7px 5px 9px;font-size:9px;font-weight:700;color:var(--sub);display:flex;flex-direction:column;align-items:center;gap:1px;min-width:60px;transition:0.2s}
+.nb .ico{font-size:19px;line-height:1;margin-bottom:2px}
+.nb.on{color:var(--b)}
+
+/* CARDS & UI */
+.card{background:var(--wh);border-radius:13px;padding:14px;margin-bottom:11px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.03)}
+.ch{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--sub);margin-bottom:9px;display:flex;align-items:center;justify-content:space-between}
+.sg4{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:11px}
+.st{background:var(--wh);border-radius:11px;padding:12px;text-align:center;border-top:3px solid var(--b);box-shadow:var(--sh)}
+.st.sb{border-top-color:var(--b)}.st.sg{border-top-color:var(--g)}.st.sgo{border-top-color:var(--go)}.st.spu{border-top-color:var(--pu)}
+.st .n{font-size:22px;font-weight:900;line-height:1}
+.st .l{font-size:9px;font-weight:800;text-transform:uppercase;color:var(--sub);margin-top:3px}
+
+.fi,.fsel,.fta{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:9px 12px;font-size:13px;font-weight:600;background:var(--bg);margin-bottom:8px}
+.fta{height:60px;resize:none;font-family:inherit}
+.fl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--sub);display:block;margin-bottom:3px}
+.btn{padding:10px 18px;border-radius:50px;border:none;font-size:13px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px;justify-content:center}
+.btn-b{background:var(--b);color:#fff}.btn-g{background:var(--g);color:#fff}.btn-r{background:var(--r);color:#fff}.btn-go{background:var(--go);color:#fff}
+
+.tbl{width:100%;border-collapse:collapse;font-size:10px}
+.tbl th{padding:6px;background:#f8fafc;color:var(--sub);font-size:8px;font-weight:800;text-transform:uppercase;text-align:left;border-bottom:2px solid var(--border)}
+.tbl td{padding:8px 6px;border-bottom:1px solid var(--border)}
+
+.badge{padding:2px 4px;border-radius:3px;font-size:8px;font-weight:900;color:#fff;display:inline-block}
+.b-ee1, .b-ee2{background:var(--g)}
+.b-me1, .b-me2{background:var(--b)}
+.b-ae1, .b-ae2{background:var(--go)}
+.b-be1, .b-be2{background:var(--r)}
+
+.tot-row td{background:#f1f5f9;font-weight:900;border-top:2px solid var(--nav)}
+
+/* REPORT INTERACTIVE FIELDS */
+.rep-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px;margin-top:5px}
+.stamp-area{width:90px; height:90px; border:2px solid var(--nav); border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-size:9px; font-weight:900; color:var(--nav); margin-left:auto; opacity:0.8; border-style:double}
+
+/* FINANCE UI */
+.receipt-box {border: 2px dashed #000; padding: 20px; background: #fff; margin-top: 15px;}
+.fin-row {display: flex; justify-content: space-between; border-bottom: 1px dotted #ccc; padding: 5px 0; font-size: 12px;}
+
+/* ATTENDANCE UI */
+.att-opt {display:flex; gap:4px}
+.att-btn {flex:1; border:1px solid var(--border); padding:6px 2px; border-radius:6px; font-size:8px; font-weight:800; background:var(--bg); color:var(--sub); cursor:pointer}
+.att-btn.p.active {background:var(--g); color:#fff; border-color:var(--g)}
+.att-btn.a.active {background:var(--r); color:#fff; border-color:var(--r)}
+.att-btn.h.active {background:var(--go); color:#fff; border-color:var(--go)}
+
+@media print{ 
+    .topbar, .bnav, .no-print, .btn, .fi, .fsel, .ch, .no-print-area, #login-screen {display:none!important} 
+    .screen{position:static;display:block;padding:0} 
+    .card{box-shadow:none;border:none; padding:0} 
+    body{background:#fff; overflow: visible;}
+    .badge {border:1px solid #000; color:#000!important; background:none!important}
+    .fi, .fta, .fsel {border:none; background:none; padding:0; margin:0; font-size:11px}
+    .stamp-area {border-color:#000; color:#000}
+    .receipt-box {border-style: solid; margin: 0; width: 100%;}
+    .att-btn:not(.active) {visibility: hidden; width:0; padding:0}
+    .att-btn.active {border:none; background:none!important; color:#000!important; font-size:10px}
+    #examEntryUI input { border:none; background:transparent; width:auto; -moz-appearance: textfield; }
+    #examEntryUI input::-webkit-outer-spin-button, #examEntryUI input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<div id="login-screen">
+  <div class="login-card">
+    <h2 style="color:var(--nav); margin-bottom:4px">SOBE ACADEMY</h2>
+    <p style="font-size:10px; font-weight:800; color:var(--sub); margin-bottom:20px; text-transform:uppercase; letter-spacing:1px">Portal Access Control</p>
+    
+    <div style="text-align:left">
+        <label class="fl">Username</label>
+        <input type="text" id="l-user" class="fi" placeholder="Enter admin username">
+        <label class="fl">Password</label>
+        <input type="password" id="l-pass" class="fi" placeholder="Enter password">
+    </div>
+    
+    <p id="l-err" style="color:var(--r); font-size:11px; font-weight:700; margin-bottom:10px; display:none">Invalid Credentials!</p>
+    
+    <button class="btn btn-b" style="width:100%; margin-top:5px" onclick="checkLogin()">Authorize Access</button>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="tb-row">
+    <div>
+      <h1 id="schoolName">EDUCATION MONITOR — SOBE ACADEMY</h1>
+      <p id="topDate">Loading...</p>
+    </div>
+    <div class="tb-right">
+      <div class="live-dot"></div>
+      <button onclick="location.reload()" style="background:none; border:none; color:#fff; font-size:11px; font-weight:bold">Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="screens">
+  <div class="screen on" id="s-home">
+    <div class="sg4">
+      <div class="st sb"><div class="n" id="hLearners">0</div><div class="l">Learners</div></div>
+      <div class="st sg"><div class="n">9</div><div class="l">Subjects</div></div>
+      <div class="st sgo"><div class="n">CBE</div><div class="l">8-Tier</div></div>
+      <div class="st spu"><div class="n">2026</div><div class="l">Year</div></div>
+    </div>
+    <div class="card">
+      <div class="ch">Registry Search</div>
+      <input class="fi" id="homeSearch" placeholder="Type name..." oninput="doHomeSearch()" style="border-radius:50px">
+      <div id="homeResults"></div>
+    </div>
+  </div>
+
+  <div class="screen" id="s-register">
+    <div class="card" id="regFormCard">
+      <div class="ch" id="regTitle">Comprehensive Learner Registry</div>
+      <input type="hidden" id="editIndex" value="-1">
+      <label class="fl">Full Name</label>
+      <input class="fi" id="regName" placeholder="e.g. John Doe">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+        <div><label class="fl">ADM No.</label><input class="fi" id="regAdm"></div>
+        <div><label class="fl">Assessment No.</label><input class="fi" id="regAssNo"></div>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+        <div><label class="fl">Gender</label><select class="fsel" id="regGender"><option>Male</option><option>Female</option></select></div>
+        <div><label class="fl">Grade</label><select class="fsel" id="regGrade"><option>7</option><option>8</option><option>9</option></select></div>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+        <div><label class="fl">Date of Birth</label><input type="date" class="fi" id="regDob"></div>
+        <div><label class="fl">Date of Admission</label><input type="date" class="fi" id="regDoa"></div>
+      </div>
+      <label class="fl">Learner Email Address</label>
+      <input type="email" class="fi" id="regEmail" placeholder="student@school.com">
+      <div style="margin: 15px 0; padding: 10px; background: var(--bg); border-radius: 8px;">
+        <div class="ch" style="margin-bottom: 5px; color: var(--b);">Parent/Guardian Details</div>
+        <label class="fl">Full Name</label><input class="fi" id="regParName">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+            <div><label class="fl">Phone Number</label><input type="tel" class="fi" id="regParPhone"></div>
+            <div><label class="fl">Email Address</label><input type="email" class="fi" id="regParEmail"></div>
+        </div>
+      </div>
+      <label class="fl">Birth Certificate (Upload Copy)</label>
+      <input type="file" class="fi" id="regCert" style="padding: 5px;">
+      <button class="btn btn-b" id="regBtn" style="width:100%; margin-top: 10px;" onclick="saveNewLearner()">Complete Registration</button>
+      <button class="btn btn-r" id="cancelEditBtn" style="width:100%; margin-top: 5px; display:none" onclick="cancelEdit()">Cancel Edit</button>
+    </div>
+    <div class="card"><div class="ch">Active Student Database</div><div id="learnerList"></div></div>
+  </div>
+
+  <div id="s-assessment" class="screen">
+    <div class="card no-print">
+      <div class="ch">Exam Configuration</div>
+      <label class="fl">Select Term</label>
+      <select class="fsel" id="termSel" onchange="renderExamConfig()">
+          <option value="t1">Term 1</option>
+          <option value="t2">Term 2</option>
+          <option value="t3">Term 3</option>
+      </select>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+        <div><label class="fl">Exam Period</label><select class="fsel" id="exSel" onchange="renderExamConfig()"><option value="op1">Opener</option><option value="op2">Mid Term</option><option value="op3">End Term</option></select></div>
+        <div><label class="fl">Select Subject</label><select class="fsel" id="subjSel" onchange="renderExamConfig()"><option>ENGLISH</option><option>Kiswahili</option><option>MATHEMATICS</option><option>Integrated Science</option><option>Social Studies</option><option>Creative Arts</option><option>Pre-Technical</option><option>Agriculture</option><option>Religious Ed</option></select></div>
+      </div>
+      <div id="examConfigUI"></div>
+    </div>
+    <div class="card">
+      <div class="ch" id="markSheetTitle">Mark Sheet</div>
+      <div id="examEntryUI" style="overflow-x:auto"></div>
+      <button class="btn btn-g no-print" id="printMarkBtn" style="width:100%; margin-top:15px; display:none" onclick="window.print()">Print Subject Mark Sheet</button>
+    </div>
+  </div>
+
+  <div id="s-finance" class="screen">
+    <div class="card">
+      <div class="ch">Fee Structure Editor <button class="btn btn-b no-print" style="padding:4px 10px; font-size:9px" onclick="window.print()">Print Structure</button></div>
+      <div id="feeItemsList"></div>
+      <button class="btn btn-b no-print" style="width:100%; margin-top:5px; padding:6px" onclick="addFeeItem()">+ Add New Fee Item</button>
+      <div style="margin-top:10px; border-top:2px solid var(--nav); padding-top:8px">
+          <div class="fin-row" style="font-weight:900; font-size:14px"><span>TOTAL FEES:</span> <span id="totalFeeLabel">0</span></div>
+      </div>
+    </div>
+    <div class="card no-print">
+      <div class="ch">Record Student Payment</div>
+      <label class="fl">Select Learner</label>
+      <select class="fsel" id="payStudent"></select>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+        <div><label class="fl">Amount Paid</label><input type="number" class="fi" id="payAmt"></div>
+        <div><label class="fl">Payment Date</label><input type="date" class="fi" id="payDate"></div>
+      </div>
+      <button class="btn btn-g" style="width:100%" onclick="recordPayment()">Save & Generate Receipt</button>
+    </div>
+    <div class="card no-print">
+        <div class="ch">Payment Tracking & Balances</div>
+        <div id="financeList" style="overflow-x:auto"></div>
+    </div>
+    <div id="receiptArea"></div>
+  </div>
+
+  <div id="s-list" class="screen">
+    <div class="card no-print">
+      <div class="ch">Grade Selection</div>
+      <label class="fl">Select Grade to Display</label>
+      <select class="fsel" id="listGradeSel" onchange="renderGradeList()">
+        <option value="">-- Choose Grade --</option>
+        <option value="7">Grade 7</option>
+        <option value="8">Grade 8</option>
+        <option value="9">Grade 9</option>
+      </select>
+    </div>
+    <div id="gradeListContent"></div>
+  </div>
+
+  <div id="s-attendance" class="screen">
+    <div class="card no-print-area">
+        <div class="ch">Mark Daily Register</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+            <div>
+                <label class="fl">Grade</label>
+                <select class="fsel" id="attGrade" onchange="renderAttendance()">
+                    <option value="7">Grade 7</option>
+                    <option value="8">Grade 8</option>
+                    <option value="9">Grade 9</option>
+                </select>
+            </div>
+            <div>
+                <label class="fl">Date</label>
+                <input type="date" class="fi" id="attDate" onchange="renderAttendance()">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div id="attHeader" style="text-align:center; margin-bottom:10px; display:none">
+            <h3 style="color:var(--nav)">SOBE ACADEMY</h3>
+            <p style="font-size:11px; font-weight:bold">ATTENDANCE REGISTER: <span id="prnAttGrade"></span> - <span id="prnAttDate"></span></p>
+        </div>
+        
+        <div id="attendanceUI" style="overflow-x:auto"></div>
+        
+        <div id="attAnalysis" style="margin-top:15px; border-top:2px solid var(--nav); padding-top:10px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center">
+            <div style="background:var(--gl); border-radius:8px; padding:8px"><div style="font-size:16px; font-weight:900" id="totP">0</div><div style="font-size:8px; font-weight:bold">PRESENT</div></div>
+            <div style="background:var(--rl); border-radius:8px; padding:8px"><div style="font-size:16px; font-weight:900" id="totA">0</div><div style="font-size:8px; font-weight:bold">ABSENT</div></div>
+            <div style="background:var(--gol); border-radius:8px; padding:8px"><div style="font-size:16px; font-weight:900" id="totH">0</div><div style="font-size:8px; font-weight:bold">HALF</div></div>
+        </div>
+    </div>
+  </div>
+
+  <div id="s-reports" class="screen">
+    <div class="card no-print">
+      <div class="ch">School Calendar Settings</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+        <div><label class="fl">Closing Date</label><input type="date" class="fi" id="cfgClose" onchange="saveCal()"></div>
+        <div><label class="fl">Opening Date</label><input type="date" class="fi" id="cfgOpen" onchange="saveCal()"></div>
+      </div>
+      
+      <div class="ch">Report Term Selection</div>
+      <label class="fl">Select Term</label>
+      <select class="fsel" id="repTermSel" onchange="reRenderReport()">
+        <option value="t1">Term 1</option>
+        <option value="t2">Term 2</option>
+        <option value="t3">Term 3</option>
+      </select>
+      
+      <div class="ch" style="margin-top: 10px;">Search Student</div>
+      <input class="fi" id="repSearch" placeholder="Type name..." oninput="doRepSearch()" style="border-radius:50px">
+      <div id="repResults"></div>
+    </div>
+    <div id="reportContent"></div>
+  </div>
+</div>
+
+<div class="bnav">
+  <button class="nb on" id="btn-home" onclick="go('home')"><span class="ico">🏠</span>Home</button>
+  <button class="nb" id="btn-register" onclick="go('register')"><span class="ico">👥</span>Reg</button>
+  <button class="nb" id="btn-assessment" onclick="go('assessment')"><span class="ico">📝</span>Exams</button>
+  <button class="nb" id="btn-finance" onclick="go('finance')"><span class="ico">💰</span>Finance</button>
+  <button class="nb" id="btn-attendance" onclick="go('attendance')"><span class="ico">📅</span>Att</button>
+  <button class="nb" id="btn-list" onclick="go('list')"><span class="ico">📋</span>List</button>
+  <button class="nb" id="btn-reports" onclick="go('reports')"><span class="ico">📊</span>Reports</button>
+</div>
+
+<script>
+// LOGIN LOGIC
+function checkLogin(){
+    const u = document.getElementById('l-user').value;
+    const p = document.getElementById('l-pass').value;
+    if(u === "SOBE" && p === "sobe6115"){
+        document.getElementById('login-screen').style.display = 'none';
+        sessionStorage.setItem('edu2_auth', 'true');
+    } else {
+        document.getElementById('l-err').style.display = 'block';
+    }
+}
+
+let LEARNERS = JSON.parse(localStorage.getItem('edu2_l')) || [];
+let CALENDAR = JSON.parse(localStorage.getItem('edu2_cal')) || { close: '', open: '' };
+let REMARKS = JSON.parse(localStorage.getItem('edu2_rem')) || {};
+let FEE_STRUCTURE = JSON.parse(localStorage.getItem('edu2_fs')) || [{name: 'Tuition', amt: 0}];
+let PAYMENTS = JSON.parse(localStorage.getItem('edu2_pays')) || {};
+let ATTENDANCE = JSON.parse(localStorage.getItem('edu2_att')) || {};
+let currentRepAdm = null;
+
+let defaultEc = { t1_op1:{}, t1_op2:{}, t1_op3:{}, t2_op1:{}, t2_op2:{}, t2_op3:{}, t3_op1:{}, t3_op2:{}, t3_op3:{} };
+let storedEc = JSON.parse(localStorage.getItem('edu2_ec'));
+if(storedEc) { if(storedEc.op1) { defaultEc.t1_op1 = storedEc.op1; defaultEc.t1_op2 = storedEc.op2; defaultEc.t1_op3 = storedEc.op3; } else { defaultEc = storedEc; } }
+let EXAM_CONFIGS = defaultEc;
+
+let SUMMATIVE = JSON.parse(localStorage.getItem('edu2_s')) || {};
+Object.keys(SUMMATIVE).forEach(k => {
+    if((k.endsWith('_op1') || k.endsWith('_op2') || k.endsWith('_op3')) && !k.includes('_t1_') && !k.includes('_t2_') && !k.includes('_t3_')) {
+        let newK = k.replace('_op', '_t1_op'); SUMMATIVE[newK] = SUMMATIVE[k]; delete SUMMATIVE[k];
+    }
+});
+
+function saveAll(){
+  localStorage.setItem('edu2_l', JSON.stringify(LEARNERS));
+  localStorage.setItem('edu2_ec', JSON.stringify(EXAM_CONFIGS));
+  localStorage.setItem('edu2_s', JSON.stringify(SUMMATIVE));
+  localStorage.setItem('edu2_rem', JSON.stringify(REMARKS));
+  localStorage.setItem('edu2_fs', JSON.stringify(FEE_STRUCTURE));
+  localStorage.setItem('edu2_pays', JSON.stringify(PAYMENTS));
+  localStorage.setItem('edu2_att', JSON.stringify(ATTENDANCE));
+  document.getElementById('hLearners').textContent = LEARNERS.length;
+}
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+  document.getElementById('s-'+id).classList.add('on');
+  document.querySelectorAll('.nb').forEach(n => n.classList.remove('on'));
+  document.getElementById('btn-'+id).classList.add('on');
+  if(id==='register') renderLearners();
+  if(id==='assessment') renderExamConfig();
+  if(id==='finance') renderFinance();
+  if(id==='list') renderGradeList();
+  if(id==='attendance') { if(!document.getElementById('attDate').value) document.getElementById('attDate').value = new Date().toISOString().split('T')[0]; renderAttendance(); }
+}
+
+function renderAttendance(){
+    const grade = document.getElementById('attGrade').value;
+    const date = document.getElementById('attDate').value;
+    if(!date) return;
+    document.getElementById('prnAttGrade').textContent = "Grade " + grade;
+    document.getElementById('prnAttDate').textContent = date;
+    document.getElementById('attHeader').style.display = "block";
+    const list = LEARNERS.filter(l => l.grade === grade);
+    let dailyH = `<div class="ch no-print">Mark Daily Attendance</div><table class="tbl no-print"><thead><tr><th>ADM</th><th>Learner Name</th><th>Marking</th></tr></thead><tbody>`;
+    let pCount = 0, aCount = 0, hCount = 0;
+    list.forEach(l => {
+        const status = (ATTENDANCE[date] && ATTENDANCE[date][l.adm]) || '';
+        if(status === 'P') pCount++; else if(status === 'A') aCount++; else if(status === 'H') hCount++;
+        dailyH += `<tr><td>${l.adm}</td><td style="font-weight:700">${l.name}</td><td class="no-print"><div class="att-opt"><button class="att-btn p ${status==='P'?'active':''}" onclick="markAtt('${l.adm}','P')">P</button><button class="att-btn h ${status==='H'?'active':''}" onclick="markAtt('${l.adm}','H')">H</button><button class="att-btn a ${status==='A'?'active':''}" onclick="markAtt('${l.adm}','A')">A</button></div></td></tr>`;
+    });
+    dailyH += `</tbody></table>`;
+    const allDates = Object.keys(ATTENDANCE).sort();
+    let historyH = `<div class="ch" style="margin-top:20px">Attendance Register (Full History)</div><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Adm No</th><th>Learner Name</th>`;
+    allDates.forEach(d => { let label = d.split('-').slice(1).join('/'); historyH += `<th>${label}</th>`; });
+    historyH += `<th style="background:var(--bl)">Tot</th></tr></thead><tbody>`;
+    list.forEach(l => {
+        let rowTotal = 0;
+        historyH += `<tr><td>${l.adm}</td><td style="white-space:nowrap; font-weight:700">${l.name}</td>`;
+        allDates.forEach(d => {
+            const stat = ATTENDANCE[d][l.adm]; let symbol = "-";
+            if(stat === 'P') { symbol = "X"; rowTotal++; }
+            if(stat === 'H') { symbol = "/"; rowTotal += 0.5; }
+            if(stat === 'A') { symbol = "00"; }
+            historyH += `<td style="text-align:center">${symbol}</td>`;
+        });
+        historyH += `<td style="font-weight:900; background:#f1f5f9; text-align:center">${rowTotal}</td></tr>`;
+    });
+    historyH += `</tbody></table></div><button class="btn btn-go no-print" style="width:100%; margin-top:10px" onclick="window.print()">Print Full Attendance List</button>`;
+    let totalPossibleDays = list.length * allDates.length, totalPresentSum = 0;
+    allDates.forEach(d => { list.forEach(l => { if(ATTENDANCE[d][l.adm] === 'P') totalPresentSum++; if(ATTENDANCE[d][l.adm] === 'H') totalPresentSum += 0.5; }); });
+    let avgPerc = totalPossibleDays > 0 ? Math.round((totalPresentSum / totalPossibleDays) * 100) : 0;
+    let analysisH = `<div class="ch" style="margin-top:20px">Grade Performance Analysis</div><div style="display:grid; grid-template-columns:1fr 1fr; gap:10px"><div class="st sb"><div class="n">${totalPresentSum}</div><div class="l">Total Days Attended</div></div><div class="st sg"><div class="n">${avgPerc}%</div><div class="l">Average Attendance</div></div></div>`;
+    document.getElementById('attendanceUI').innerHTML = dailyH + historyH + analysisH;
+    document.getElementById('totP').textContent = pCount; document.getElementById('totA').textContent = aCount; document.getElementById('totH').textContent = hCount;
+}
+
+function markAtt(adm, status){ const date = document.getElementById('attDate').value; if(!ATTENDANCE[date]) ATTENDANCE[date] = {}; if(ATTENDANCE[date][adm] === status) delete ATTENDANCE[date][adm]; else ATTENDANCE[date][adm] = status; saveAll(); renderAttendance(); }
+
+function saveNewLearner(){
+  const name = document.getElementById('regName').value, adm = document.getElementById('regAdm').value, editIdx = parseInt(document.getElementById('editIndex').value);
+  if(!name || !adm) return alert("Required: Name & ADM");
+  const learner = { name, adm, assNo: document.getElementById('regAssNo').value, gender: document.getElementById('regGender').value, grade: document.getElementById('regGrade').value, dob: document.getElementById('regDob').value, doa: document.getElementById('regDoa').value, email: document.getElementById('regEmail').value, parName: document.getElementById('regParName').value, parPhone: document.getElementById('regParPhone').value, parEmail: document.getElementById('regParEmail').value, certFile: document.getElementById('regCert').files[0]?.name || (editIdx > -1 ? LEARNERS[editIdx].certFile : 'No file') };
+  if(editIdx > -1) { LEARNERS[editIdx] = learner; cancelEdit(); } else { LEARNERS.push(learner); }
+  saveAll(); renderLearners(); clearRegForm();
+}
+function clearRegForm(){ ["regName","regAdm","regAssNo","regEmail","regParName","regParPhone","regParEmail","regDob","regDoa","regCert"].forEach(id => { document.getElementById(id).value = ''; }); document.getElementById('editIndex').value = "-1"; }
+function editLearner(idx){
+    const l = LEARNERS[idx]; document.getElementById('regTitle').textContent = "Editing: " + l.name; document.getElementById('regName').value = l.name; document.getElementById('regAdm').value = l.adm; document.getElementById('regAssNo').value = l.assNo; document.getElementById('regGender').value = l.gender; document.getElementById('regGrade').value = l.grade; document.getElementById('regDob').value = l.dob; document.getElementById('regDoa').value = l.doa; document.getElementById('regEmail').value = l.email; document.getElementById('regParName').value = l.parName; document.getElementById('regParPhone').value = l.parPhone; document.getElementById('regParEmail').value = l.parEmail; document.getElementById('editIndex').value = idx; document.getElementById('regBtn').textContent = "Update Learner Details"; document.getElementById('regBtn').className = "btn btn-go"; document.getElementById('cancelEditBtn').style.display = "block"; document.getElementById('s-register').scrollTo({top: 0, behavior: 'smooth'});
+}
+function cancelEdit(){ document.getElementById('regTitle').textContent = "Comprehensive Learner Registry"; document.getElementById('regBtn').textContent = "Complete Registration"; document.getElementById('regBtn').className = "btn btn-b"; document.getElementById('cancelEditBtn').style.display = "none"; clearRegForm(); }
+function renderLearners(){ document.getElementById('learnerList').innerHTML = LEARNERS.map((l, i) => `<div class="card" style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; margin-bottom:5px"><div><div style="font-size:12px; font-weight:bold">${l.name} <span style="opacity:0.5; font-weight:normal">#${l.adm}</span></div><div style="font-size:9px; color:var(--sub)">${l.gender} · Grade ${l.grade} · Parent: ${l.parPhone || 'N/A'}</div></div><div style="display:flex; gap:5px"><button class="btn btn-go" style="padding:4px 8px; font-size:10px" onclick="editLearner(${i})">✏️</button><button class="btn btn-r" style="padding:4px 8px; font-size:10px" onclick="deleteLearner('${l.adm}')">✕</button></div></div>`).join('') || '<p style="text-align:center; padding:10px; color:var(--sub)">No learners registered.</p>'; }
+function deleteLearner(adm){ if(confirm("Delete learner?")) { LEARNERS = LEARNERS.filter(x => x.adm !== adm); saveAll(); renderLearners(); } }
+
+function renderGradeList(){
+    const grade = document.getElementById('listGradeSel').value; if(!grade) { document.getElementById('gradeListContent').innerHTML = ""; return; }
+    const filtered = LEARNERS.filter(l => l.grade === grade);
+    const totalFee = FEE_STRUCTURE.reduce((s, x) => s + x.amt, 0);
+    let h = `<div class="card"><div style="text-align:center; margin-bottom:15px"><h3 style="color:var(--nav)">SOBE ACADEMY</h3><p style="font-size:11px; font-weight:bold">OFFICIAL LEARNER LIST - GRADE ${grade}</p></div><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>ADM</th><th>Name</th><th>Assess No.</th><th>Gender</th><th>DOA</th><th>DOB</th><th>Email</th><th>Parent Name</th><th>Parent Phone</th><th>Parent Email</th><th>Fee Balance</th></tr></thead><tbody>`;
+    if(filtered.length === 0) h += `<tr><td colspan="11" style="text-align:center; padding:20px; color:var(--sub)">No learners found for this grade.</td></tr>`;
+    else filtered.forEach(l => { 
+        let paid = (PAYMENTS[l.adm] || []).reduce((s, p) => s + p.amt, 0);
+        let bal = totalFee - paid;
+        h += `<tr><td><b>${l.adm}</b></td><td><b>${l.name}</b></td><td>${l.assNo || '-'}</td><td>${l.gender || '-'}</td><td>${l.doa || '-'}</td><td>${l.dob || '-'}</td><td>${l.email || '-'}</td><td>${l.parName || '-'}</td><td>${l.parPhone || '-'}</td><td>${l.parEmail || '-'}</td><td style="font-weight:bold; color:${bal>0?'red':'green'}">${bal}</td></tr>`; 
+    });
+    h += `</tbody></table></div><button class="btn btn-g no-print" style="width:100%; margin-top:20px" onclick="window.print()">Print Grade List</button></div>`;
+    document.getElementById('gradeListContent').innerHTML = h;
+}
+
+function addFeeItem(){ FEE_STRUCTURE.push({name: 'New Fee', amt: 0}); saveAll(); renderFinance(); }
+function remFeeItem(i){ FEE_STRUCTURE.splice(i,1); saveAll(); renderFinance(); }
+function updFeeItem(i, f, v){ FEE_STRUCTURE[i][f] = (f==='amt' ? parseInt(v)||0 : v); saveAll(); renderFinance(); }
+function renderFinance(){
+    let h = FEE_STRUCTURE.map((item, i) => `<div style="display:grid; grid-template-columns: 1fr 100px 40px; gap:5px; margin-bottom:5px"><input class="fi" style="margin:0" value="${item.name}" onchange="updFeeItem(${i},'name',this.value)"><input class="fi" type="number" style="margin:0" value="${item.amt}" onchange="updFeeItem(${i},'amt',this.value)"><button class="btn btn-r no-print" style="padding:0; height:35px" onclick="remFeeItem(${i})">✕</button></div>`).join('');
+    document.getElementById('feeItemsList').innerHTML = h;
+    const totalReq = FEE_STRUCTURE.reduce((s, x) => s + x.amt, 0);
+    document.getElementById('totalFeeLabel').textContent = totalReq;
+    document.getElementById('payStudent').innerHTML = LEARNERS.map(l => `<option value="${l.adm}">${l.name} (#${l.adm})</option>`).join('');
+    let monHtml = `<table class="tbl"><thead><tr><th>Learner</th><th>Paid</th><th>Bal</th><th>View</th></tr></thead><tbody>`;
+    LEARNERS.forEach(l => {
+        let paid = (PAYMENTS[l.adm] || []).reduce((s, p) => s + p.amt, 0);
+        monHtml += `<tr><td><b>${l.name}</b></td><td>${paid}</td><td style="color:${(totalReq-paid)>0?'red':'green'}">${totalReq-paid}</td><td><button class="btn btn-b" style="padding:4px 8px; font-size:10px" onclick="generateReceipt('${l.adm}',0,'',true)">View</button></td></tr>`;
+    });
+    document.getElementById('financeList').innerHTML = monHtml + `</tbody></table>`;
+}
+function recordPayment(){
+    const adm = document.getElementById('payStudent').value, amt = parseInt(document.getElementById('payAmt').value), date = document.getElementById('payDate').value;
+    if(!amt || !date) return alert("Missing fields");
+    if(!PAYMENTS[adm]) PAYMENTS[adm] = [];
+    PAYMENTS[adm].push({amt, date});
+    saveAll(); renderFinance(); generateReceipt(adm, amt, date);
+}
+
+function generateReceipt(adm, amt, date, viewOnly = false){
+    const l = LEARNERS.find(x => x.adm === adm), totalReq = FEE_STRUCTURE.reduce((s, x) => s + x.amt, 0), history = PAYMENTS[adm] || [], totalPaid = history.reduce((s, p) => s + p.amt, 0);
+    
+    let historyHtml = "";
+    if(viewOnly && history.length > 0) {
+        historyHtml = `<div style="margin-top:10px; border-top:1px solid var(--border); padding-top:10px"><div class="ch">Full Payment History</div>`;
+        history.forEach(p => {
+            historyHtml += `<div class="fin-row"><span>${p.date}</span> <b>${p.amt}</b></div>`;
+        });
+        historyHtml += `</div>`;
+    } else {
+        historyHtml = `<div style="background:#f1f5f9; padding:8px; margin:10px 0"><div class="fin-row" style="border:none"><span>Amount Paid:</span> <b>${amt}</b></div></div>`;
+    }
+
+    document.getElementById('receiptArea').innerHTML = `
+        <div class="receipt-box">
+            <div style="text-align:center; border-bottom: 2px solid #000"><h3>SOBE ACADEMY</h3><p>OFFICIAL FEE STATEMENT</p></div>
+            <div class="fin-row"><span>Learner:</span> <b>${l.name}</b></div>
+            <div class="fin-row"><span>ADM No:</span> <b>${l.adm}</b></div>
+            ${!viewOnly ? `<div class="fin-row"><span>Date:</span> <b>${date}</b></div>` : ''}
+            ${historyHtml}
+            <div class="fin-row"><span>Term Total Required:</span> <b>${totalReq}</b></div>
+            <div class="fin-row"><span>Cumulative Paid:</span> <b>${totalPaid}</b></div>
+            <div class="fin-row" style="border-top:1px solid #000; font-weight:bold; font-size:14px; margin-top:5px; padding-top:10px"><span>TOTAL BALANCE DUE:</span> <b style="color:${(totalReq-totalPaid)>0?'red':'green'}">${totalReq-totalPaid}</b></div>
+            <button class="btn btn-g no-print" style="width:100%; margin-top:10px" onclick="window.print()">Print Statement</button>
+        </div>`;
+    document.getElementById('receiptArea').scrollIntoView({behavior: "smooth"});
+}
+
+function renderExamConfig(){
+  const exKey = document.getElementById('termSel').value + '_' + document.getElementById('exSel').value, subj = document.getElementById('subjSel').value;
+  if(!EXAM_CONFIGS[exKey]) EXAM_CONFIGS[exKey] = {}; if(!EXAM_CONFIGS[exKey][subj]) EXAM_CONFIGS[exKey][subj] = [];
+  const cfg = EXAM_CONFIGS[exKey][subj];
+  let h = `<div style="margin-top:10px; border-top:1px dashed var(--border); padding-top:10px"><div class="fl">Configure ${subj} Parts</div>`;
+  h += cfg.map((c, i) => `<div style="display:flex; gap:5px; margin-bottom:5px"><input class="fi" style="margin:0; flex:1" value="${c.name}" onchange="updCfg('${exKey}','${subj}',${i},'name',this.value)"><input class="fi" style="margin:0; width:60px" type="number" value="${c.max}" onchange="updCfg('${exKey}','${subj}',${i},'max',this.value)"><button class="btn btn-r" onclick="remCfg('${exKey}','${subj}',${i})">✕</button></div>`).join('');
+  h += `<button class="btn btn-b" style="width:100%; margin-top:5px; padding:6px" onclick="addCfg('${exKey}','${subj}')">+ Add Learning Area</button></div>`;
+  document.getElementById('examConfigUI').innerHTML = h; renderExamEntry();
+}
+function addCfg(exKey, subj){ EXAM_CONFIGS[exKey][subj].push({name:"Task 1", max:50}); saveAll(); renderExamConfig(); }
+function remCfg(exKey, subj, i){ EXAM_CONFIGS[exKey][subj].splice(i,1); saveAll(); renderExamConfig(); }
+function updCfg(exKey, subj, i, f, v){ EXAM_CONFIGS[exKey][subj][i][f] = (f==='max'?parseInt(v):v); saveAll(); renderExamConfig(); }
+function renderExamEntry(){
+  const term = document.getElementById('termSel').value, ex = document.getElementById('exSel').value, subj = document.getElementById('subjSel').value;
+  const exKey = term + '_' + ex, cfg = EXAM_CONFIGS[exKey][subj] || [];
+  const printBtn = document.getElementById('printMarkBtn');
+  
+  if(!cfg.length) { 
+    document.getElementById('examEntryUI').innerHTML = "<p style='padding:20px; text-align:center; color:var(--sub)'>Define areas above.</p>"; 
+    printBtn.style.display = "none";
+    return; 
+  }
+  
+  printBtn.style.display = "block";
+  let maxTotal = cfg.reduce((sum, c) => sum + (parseInt(c.max) || 0), 0);
+  let h = `<div id="printableMarkSheet">
+    <div class="only-print" style="text-align:center; margin-bottom:15px; display:none">
+        <h2 style="color:var(--nav); margin:0">SOBE ACADEMY</h2>
+        <p style="font-weight:bold; margin:2px 0">${term.toUpperCase().replace('T','TERM ')} - ${ex.toUpperCase()} MARK SHEET</p>
+        <p style="font-weight:bold; color:var(--b)">SUBJECT: ${subj}</p>
+    </div>
+    <table class="tbl"><thead><tr><th>Name</th>`; 
+  cfg.forEach(c => h += `<th>${c.name}</th>`); 
+  h += `<th>TOT</th><th>PTS</th><th>LVL</th></tr></thead><tbody>`;
+  
+  LEARNERS.forEach(l => {
+    let key = l.adm+"_"+exKey; if(!SUMMATIVE[key]) SUMMATIVE[key] = {}; if(!SUMMATIVE[key][subj]) SUMMATIVE[key][subj] = {};
+    let rowSum = 0; h += `<tr><td style="font-weight:700">${l.name}</td>`;
+    cfg.forEach(c => {
+      let score = SUMMATIVE[key][subj][c.name] ? SUMMATIVE[key][subj][c.name].raw : ""; rowSum += (parseInt(score) || 0);
+      h += `<td><input type="number" class="fi" style="width:35px; margin:0; padding:4px" value="${score}" onchange="saveScore('${l.adm}','${exKey}','${subj}','${c.name}',this.value,${c.max})"></td>`;
+    });
+    let pct = maxTotal > 0 ? Math.round((rowSum / maxTotal) * 100) : 0, lvl = getCbeLvl(pct), pts = getCbePts(lvl);
+    h += `<td style="font-weight:900; color:var(--b)">${rowSum}</td><td style="font-weight:900">${pts}</td><td><span class="badge b-${lvl.toLowerCase()}">${lvl}</span></td></tr>`;
+  });
+  document.getElementById('examEntryUI').innerHTML = h + `</tbody></table></div>`;
+}
+
+function saveScore(adm, exKey, subj, area, val, max){ let key = adm+"_"+exKey; if(!SUMMATIVE[key]) SUMMATIVE[key] = {}; if(!SUMMATIVE[key][subj]) SUMMATIVE[key][subj] = {}; let raw = parseInt(val) || 0; SUMMATIVE[key][subj][area] = { raw: raw, pct: Math.round((raw/max)*100) }; saveAll(); renderExamEntry(); }
+function getCbeLvl(p){ if(p >= 90) return 'EE1'; if(p >= 80) return 'EE2'; if(p >= 70) return 'ME1'; if(p >= 60) return 'ME2'; if(p >= 50) return 'AE1'; if(p >= 40) return 'AE2'; if(p >= 20) return 'BE1'; return 'BE2'; }
+function getCbePts(lvl){ const m = { 'EE1':8, 'EE2':7, 'ME1':6, 'ME2':5, 'AE1':4, 'AE2':3, 'BE1':2, 'BE2':1 }; return m[lvl] || 0; }
+
+function doHomeSearch(){
+  let s = document.getElementById('homeSearch').value.toLowerCase(); if(s.length < 2) return document.getElementById('homeResults').innerHTML = "";
+  document.getElementById('homeResults').innerHTML = LEARNERS.filter(l => l.name.toLowerCase().includes(s)).map(l => `<div class="card" onclick="go('reports'); generateReport('${l.adm}')">👤 ${l.name}</div>`).join('');
+}
+function doRepSearch(){
+  let s = document.getElementById('repSearch').value.toLowerCase(); if(s.length < 2) return document.getElementById('repResults').innerHTML = "";
+  document.getElementById('repResults').innerHTML = LEARNERS.filter(l => l.name.toLowerCase().includes(s)).map(l => `<div class="card" onclick="generateReport('${l.adm}')">${l.name}</div>`).join('');
+}
+
+function saveCal(){ CALENDAR.close = document.getElementById('cfgClose').value; CALENDAR.open = document.getElementById('cfgOpen').value; localStorage.setItem('edu2_cal', JSON.stringify(CALENDAR)); }
+function saveRemark(adm, field, val){ if(!REMARKS[adm]) REMARKS[adm] = {}; REMARKS[adm][field] = val; localStorage.setItem('edu2_rem', JSON.stringify(REMARKS)); }
+function reRenderReport() { if(currentRepAdm) generateReport(currentRepAdm); }
+
+function generateReport(adm){
+  currentRepAdm = adm; const l = LEARNERS.find(x => x.adm === adm), rem = REMARKS[adm] || {}, term = document.getElementById('repTermSel').value;
+  document.getElementById('repResults').innerHTML = "";
+  const subjs = ["ENGLISH","Kiswahili","MATHEMATICS","Integrated Science","Social Studies","Creative Arts","Pre-Technical","Agriculture","Religious Ed"];
+  let grandTotals = { op: { pct: 0, pts: 0 }, mid: { pct: 0, pts: 0 }, end: { pct: 0, pts: 0 }, sum: { pct: 0, pts: 0 } };
+  let rows = subjs.map(s => {
+    let examPcts = [];
+    let cells = ['op1','op2','op3'].map((exSuffix, idx) => {
+      let exKey = term + '_' + exSuffix, data = SUMMATIVE[adm+"_"+exKey] && SUMMATIVE[adm+"_"+exKey][s], areas = EXAM_CONFIGS[exKey] && EXAM_CONFIGS[exKey][s] ? EXAM_CONFIGS[exKey][s] : [];
+      if(!data || !areas.length) return `<td colspan="2">—</td>`;
+      let sum = 0, max = 0; areas.forEach(a => { sum += (data[a.name]?.raw || 0); max += a.max; });
+      let pct = Math.round((sum/max)*100); examPcts.push(pct);
+      let lvl = getCbeLvl(pct), pts = getCbePts(lvl), period = idx === 0 ? 'op' : idx === 1 ? 'mid' : 'end';
+      grandTotals[period].pct += pct; grandTotals[period].pts += pts;
+      return `<td style="font-weight:bold">${pct}%</td><td>${lvl}</td>`;
+    }).join('');
+    let avg = examPcts.length > 0 ? Math.round(examPcts.reduce((a,b)=>a+b, 0) / examPcts.length) : null, avgLvl = avg !== null ? getCbeLvl(avg) : '—', avgPts = avg !== null ? getCbePts(avgLvl) : 0;
+    if(avg !== null) { grandTotals.sum.pct += avg; grandTotals.sum.pts += avgPts; }
+    return `<tr><td>${s}</td>${cells}<td style="font-weight:900; background:#f0f9ff">${avg !== null ? avg+'%' : '—'}</td><td style="font-weight:900; background:#f0f9ff">${avgPts || '—'}</td><td style="background:#f0f9ff"><span class="badge b-${avgLvl.toLowerCase()}">${avgLvl}</span></td></tr>`;
+  }).join('');
+  let termLabel = term === 't1' ? 'TERM 1' : term === 't2' ? 'TERM 2' : 'TERM 3';
+  let totalRow = `<tr class="tot-row"><td>TOTAL</td><td colspan="2">${grandTotals.op.pct}% / Pts: ${grandTotals.op.pts}</td><td colspan="2">${grandTotals.mid.pct}% / Pts: ${grandTotals.mid.pts}</td><td colspan="2">${grandTotals.end.pct}% / Pts: ${grandTotals.end.pts}</td><td>${grandTotals.sum.pct}%</td><td>${grandTotals.sum.pts}</td><td>—</td></tr>`;
+  document.getElementById('reportContent').innerHTML = `<div class="card"><div style="text-align:center; margin-bottom:10px"><h3 style="color:var(--nav); margin:0">SOBE ACADEMY</h3><p style="font-size:10px; font-weight:800; color:var(--sub)">OFFICIAL LEARNER'S PROGRESS REPORT - ${termLabel}</p></div><div style="font-size:11px; background:var(--bg); padding:8px; border-radius:8px; display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:10px"><div><b>NAME:</b> ${l.name}</div><div><b>ADM:</b> ${l.adm}</div><div><b>GRADE:</b> ${l.grade}</div><div><b>ASSESS #:</b> ${l.assNo || 'N/A'}</div></div><div style="overflow-x:auto"><table class="tbl"><thead><tr><th rowspan="2">Subject</th><th colspan="2">Opener</th><th colspan="2">Mid</th><th colspan="2">End</th><th colspan="3" style="background:#dbeafe">SUMMARY</th></tr><tr><th>%</th><th>Lvl</th><th>%</th><th>Lvl</th><th>%</th><th>Lvl</th><th style="background:#dbeafe">AVG</th><th style="background:#dbeafe">PTS</th><th style="background:#dbeafe">LVL</th></tr></thead><tbody>${rows}${totalRow}</tbody></table></div><div style="margin-top:15px; font-size:11px"><div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:12px"><div><label class="fl">Closing Date</label><b>${CALENDAR.close || '..........'}</b></div><div><label class="fl">Opening Date</label><b>${CALENDAR.open || '..........'}</b></div></div><div style="border-top:1px solid var(--border); padding-top:10px; margin-bottom:15px"><label class="fl">Class Teacher's Comment</label><textarea class="fta" onchange="saveRemark('${l.adm}', '${term}_ct_rem', this.value)">${rem[`${term}_ct_rem`] || ''}</textarea><div class="rep-grid"><div><label class="fl">Teacher Name</label><input class="fi" value="${rem[`${term}_ct_name`] || ''}" onchange="saveRemark('${l.adm}', '${term}_ct_name', this.value)"></div><div><label class="fl">Signature</label><input class="fi" placeholder="Digital Sign" value="${rem[`${term}_ct_sig`] || ''}" onchange="saveRemark('${l.adm}', '${term}_ct_sig', this.value)"></div><div><label class="fl">Date</label><input type="date" class="fi" value="${rem[`${term}_ct_date`] || ''}" onchange="saveRemark('${l.adm}', '${term}_ct_date', this.value)"></div></div></div><div style="border-top:1px solid var(--border); padding-top:10px; margin-bottom:15px"><label class="fl">Head of Institution's Comment</label><textarea class="fta" onchange="saveRemark('${l.adm}', '${term}_ht_rem', this.value)">${rem[`${term}_ht_rem`] || ''}</textarea><div style="display:flex; gap:10px; align-items:flex-start"><div style="flex:1" class="rep-grid"><div><label class="fl">Headteacher Name</label><input class="fi" value="${rem[`${term}_ht_name`] || ''}" onchange="saveRemark('${l.adm}', '${term}_ht_name', this.value)"></div><div><label class="fl">Signature/Stamp</label><input class="fi" placeholder="Digital Sign" value="${rem[`${term}_ht_sig`] || ''}" onchange="saveRemark('${l.adm}', '${term}_ht_sig', this.value)"></div><div><label class="fl">Date</label><input type="date" class="fi" value="${rem[`${term}_ht_date`] || ''}" onchange="saveRemark('${l.adm}', '${term}_ht_date', this.value)"></div></div><div class="stamp-area">OFFICIAL<br/>SCHOOL<br/>STAMP</div></div></div><div style="border-top:1px solid var(--border); padding-top:10px\"><label class="fl">Parent/Guardian Comment</label><textarea class="fta" onchange="saveRemark('${l.adm}', '${term}_p_rem', this.value)">${rem[`${term}_p_rem`] || ''}</textarea><div class="rep-grid"><div><label class="fl">Parent Name</label><input class="fi" value="${rem[`${term}_p_name`] || ''}" onchange="saveRemark('${l.adm}', '${term}_p_name', this.value)"></div><div><label class="fl">Signature</label><input class="fi" placeholder="Digital Sign" value="${rem[`${term}_p_sig`] || ''}" onchange="saveRemark('${l.adm}', '${term}_p_sig', this.value)"></div><div><label class="fl">Date</label><input type="date" class="fi" value="${rem[`${term}_p_date`] || ''}" onchange="saveRemark('${l.adm}', '${term}_p_date', this.value)"></div></div></div></div><button class="btn btn-g no-print" style="width:100%; margin-top:20px" onclick="window.print()">Print Official Report</button></div>`;
+}
+
+window.onload = () => { 
+    // SESSION PERSISTENCE CHECK
+    if(sessionStorage.getItem('edu2_auth') === 'true'){
+        document.getElementById('login-screen').style.display = 'none';
+    }
+    document.getElementById("topDate").textContent = new Date().toDateString(); 
+    document.getElementById('hLearners').textContent = LEARNERS.length; 
+};
+</script>
+<style>
+@media print { .only-print { display: block !important; } }
+</style>
+</body>
+</html>
